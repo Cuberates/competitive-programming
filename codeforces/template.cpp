@@ -73,9 +73,6 @@
 #include <unordered_set>
 #include <thread>
 
-#define ll long long 
-#define int uint32_t
-
 void solve(); 
 
 int main() { 
@@ -84,10 +81,7 @@ int main() {
   
   int num_test = 0;   
   std::cin >> num_test; 
-  for(int nt = 0; nt < num_test; nt++) { 
-    #ifndef ONLINE_JUDGE
-      std::cout << "----------------\n";
-    #endif
+  for(int nt = 0; nt < num_test; nt++) {  
     solve(); 
   }
 }
