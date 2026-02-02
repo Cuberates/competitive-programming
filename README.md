@@ -1,2 +1,2 @@
 ## Competitive Programming Archive
-- This repository contains solution files for programming contests and essential files for programming competitions.  
+- This repository contains solution files for programming contests and essential files for programming competitions. The competitions range from ICPC Regionals and Codeforces Weekly Contests to HackerRank/LeetCode problem implementations. I plan to add a few directories containing debugging templates for dynamically outputting data structures and code snippets for well-known structures and algorithms to save time during competitions.
