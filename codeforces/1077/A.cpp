@@ -90,10 +90,5 @@ int main(void) {
 void solve() { 
   int n; 
   std::cin >> n; 
-  // p(i) - p(i+1) = ik => p(i+1) = p(i) - ik
-  // let k to be 1 -> p(i+1) = p(i)-i
-  for(int i = 0; i < n; i++) { 
-    std::cout << n-i << " ";
-  }
-  std::cout << "\n";
+  
 } 

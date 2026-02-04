@@ -88,28 +88,30 @@ int main(void) {
 }
 
 void solve() { 
-  int n; 
+  uint32_t n; 
   std::string s; 
   std::cin >> n >> s;
 
-  std::vector<long long> dp(n, 1e9+1);
-  for(int i = 0; i < n; i++) {
-    if (s[i] == '1') { 
-      if (i-1 >= 0) dp[i] = std::min(dp[i], dp[i-1]+1);
-      else dp[i] = std::min(dp[i], 1LL);
-    } else { 
-      if((i-1 < 0 || (i-1 >= 0 && s[i-1] == '0')) && (i+1 >= n || (i+1 < n && s[i+1] == '0'))) { 
-        if (i-2 >= 0) dp[i] = std::max(dp[i], 1 + dp[i-2]);
-        else if (i-1 >= 0) dp[i] = std::max(dp[i], dp[i-1]);
-        else dp[i] = std::min(dp[i], 1LL);
-        if (i-1 >= 0) dp[i] = std::max(dp[i], dp[i-1]);
-        else dp[i] = std::min(dp[i], 0LL);
-      } else { 
-        if (i-1 >= 0) dp[i] = std::max(dp[i], dp[i-1]);
-        else dp[i] = std::min(dp[i], 0LL);
-      }
-    }
+  if (n <= 1) { 
+    s[0] = '0';
+    std::cout << "1\n";
+    return; 
   }
-  // for(uint32_t i = 0; i < n; i++) { std::cout << dp[i] << " "; }
-  std::cout << dp[n-1] << "\n"; 
+
+  uint32_t ans = 0;
+
+  for(int i = 0; i < n; i++) { 
+    if (s[i] == '0') { 
+      if (i <= 0 && i+1 <= n-1 && s[i+1] == '0') { 
+        s[i] = '1';
+        ans++; 
+      }
+      else if (i > 0 && i-1 >= 0 && s[i-1] == '0' && i+1 <= n-1 && s[i+1] == '0') { 
+        s[i] = '1';
+        ans++; 
+      }
+      else continue; 
+    } else continue;
+  }
+  std::cout << ans << "\n";
 } 
