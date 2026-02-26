@@ -72,27 +72,26 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <thread>
-#include <algorithm>
 
-void solve();
+#include <bits/stdc++.h>
 
-int main(void) { 
-  std::ios_base::sync_with_stdio(false);
-  std::cin.tie(0); std::cout.tie(0);
-  
-  uint32_t num_test = 0;   
-  std::cin >> num_test; 
-  for(uint32_t nt = 0; nt < num_test; nt++) {
-    solve(); 
-  }
+void solve(); 
+
+int main() { 
+   std::ios_base::sync_with_stdio(false);
+   std::cin.tie(0); std::cout.tie(0);
+   int num_test = 0;   
+   std::cin >> num_test; 
+   for(int nt = 0; nt < num_test; nt++) {  
+      solve(); 
+   }
 }
 
-void solve() { 
-  uint32_t n; 
-  std::string s; 
-  std::cin >> n >> s;
+void solve() {
+   int a, b, c, d;
+   std::cin >> a >> b >> c >> d; 
+   if (a == b && b == c && c == d) std::cout << "YES \n";
+   else cout << "NO \n";
+}
 
-  for(size_t i = 0; i < n; i++) { 
 
-  }
-} 

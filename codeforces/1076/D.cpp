@@ -109,6 +109,6 @@ void solve() {
     long long score = passed * diff;
     ans = std::max(ans, score);
   }
-
   std::cout << ans << "\n";
 }
+

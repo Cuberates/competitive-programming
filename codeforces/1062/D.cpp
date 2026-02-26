@@ -72,27 +72,52 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <thread>
-#include <algorithm>
 
-void solve();
 
-int main(void) { 
-  std::ios_base::sync_with_stdio(false);
-  std::cin.tie(0); std::cout.tie(0);
-  
-  uint32_t num_test = 0;   
-  std::cin >> num_test; 
-  for(uint32_t nt = 0; nt < num_test; nt++) {
-    solve(); 
-  }
+void solve(); 
+
+int main() { 
+   std::ios_base::sync_with_stdio(false);
+   std::cin.tie(0); std::cout.tie(0);
+   int num_test = 0;   
+   std::cin >> num_test; 
+   for(int nt = 0; nt < num_test; nt++) {  
+      solve(); 
+   }
 }
 
-void solve() { 
-  uint32_t n; 
-  std::string s; 
-  std::cin >> n >> s;
+void solve() {
+   int n; std::cin >> n; 
+   std::vector<int> a(n); 
+   int odd = 0;
+   for(int i = 0; i < n; i++) { 
+      std::cin >> a[i];
+      odd += (a[i] % 2 != 0);
+   }
+   
+   if (odd) std::cout << 2 << "\n";
+   else {
+      int good = 0;
+      int ans = -1;
+      for(long long p = 2; p <= 1000000000000000000 && !good; p++) { 
+         bool is_prime = true; 
+         for(long long f = 2; f <= p && is_prime; f++) { 
+            if (p % f == 0) is_prime = false;  
+         }
+         if(is_prime) { 
+            for(int i = 0; i < n && !good; i++) { 
+               if (a[i] % p != 0) { 
+                  good = true; 
+                  ans = p;
+               }
+               else continue; 
+            }
+         } else continue;
+      }
+      std::cout << ans << "\n";
+   }
+   // We know that odd numbers are coprime with 2 
+   // How about the even numbers? 
+   
+}
 
-  for(size_t i = 0; i < n; i++) { 
-
-  }
-} 

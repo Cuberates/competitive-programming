@@ -73,6 +73,8 @@
 #include <unordered_set>
 #include <thread>
 
+#include <bits/stdc++.h>
+
 void solve(); 
 
 int main() { 
@@ -86,6 +88,6 @@ int main() {
   }
 }
 
-void solve() { 
-  
+void solve() {
+
 }

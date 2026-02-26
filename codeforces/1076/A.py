@@ -6,7 +6,7 @@ for tt in range(0, num_test):
   s = int(s) 
   x = int(x)
   a = [int(i) for i in input().split(' ')]
-  
+   
   sum = 0 
   for i in range(0, n):
     sum = sum + a[i]
