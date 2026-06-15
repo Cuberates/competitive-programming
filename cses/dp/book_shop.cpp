@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+#include <iostream> 
 
 using namespace std;
 
@@ -20,7 +21,7 @@ struct Book {
    friend void set_price(Book &book, const int &price);
    friend void set_num_page(Book &book, const int &num_page);
    friend int get_price(const Book &book);
-   friend int get_num_page(const Book &book); and, by the above, satisfies 
+   friend int get_num_page(const Book &book);  
 };
 
 void set_price (Book& book, const int &price) {
@@ -35,9 +36,6 @@ int get_price(const Book& book) {
 int get_num_page (const Book& book) {
    return book.num_page;
 }
-
-
-
 
 int main() { 
 	useIO();
@@ -68,7 +66,7 @@ int main() {
          int book_ID = num_books-1;
          if (book_ID <= -1) continue;
         
-         Book curr_book = books[book_ID];
+         const Book& curr_book = books[book_ID];
          int book_price = get_price(curr_book);
          int book_num_page = get_num_page(curr_book);
 

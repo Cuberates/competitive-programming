@@ -120,7 +120,7 @@ void bfs(pii u, int x) {
       // continue exploring 
       if (home.loc.fi + 1 < r) { 
         Node newNode(home.loc.fi+1, home.loc.se);
-        
+        // finish implementation 
       }
 
     } else if (dist < home.d2.fi) { 

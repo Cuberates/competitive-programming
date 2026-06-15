@@ -83,7 +83,7 @@ int dfs(int u, int v, char dir = 'r') {
   if (u == ex && v == ey) return 1;
   
   if (dir == 'r') { 
-    if (u-1 >= 0 && a[u-1][v] != '1')     
+    if (u-1 >= 0 && a[u-1][v] != '1') {}  
   }
 
   if (dir == 'l') {
