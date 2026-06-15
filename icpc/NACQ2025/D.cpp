@@ -98,5 +98,5 @@ int main(void) {
   for(int i = 0; i < r; i++) { 
     cin >> a[i];
   }
-  cout << (dfs() ? 1 : 0);
+  cout << (dfs(r, c) ? 1 : 0);
 }
