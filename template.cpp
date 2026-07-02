@@ -1,3 +1,4 @@
+#include <random> 
 #include <cassert>
 #include <cctype>
 #include <cerrno>
@@ -73,10 +74,13 @@
 #include <unordered_set>
 #include <thread>
 
-#include <bits/stdc++.h>
+/**@attention: Random generator stolen from a random person */
+std::mt19937 rng(std::chrono::steady_clock::now().time_since_epoch().count());
+long long rand(long long L, long long R){
+  return std::uniform_int_distribution<long long>(L, R)(rng);
+}
 
 void solve(); 
-
 int main() { 
   std::ios_base::sync_with_stdio(false);
   std::cin.tie(0); std::cout.tie(0);

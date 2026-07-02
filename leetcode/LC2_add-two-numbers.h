@@ -17,7 +17,6 @@ public:
     int start = true; 
     while (true) { 
       if (l1 == NULL || l2 == NULL) break;
-
       // Calculate the sum of the digit + the carry
       sum = l1->val + l2->val + carry;
 
