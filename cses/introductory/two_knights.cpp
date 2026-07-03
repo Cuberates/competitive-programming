@@ -1,13 +1,26 @@
-#include <bits/stdc++.h>
-#define ll long long
-using namespace std;
- 
-int main(){
-	ll n;
-	cin >> n;
-	for(ll k=1;k<=n;k++) {
-		ll total = (k*k)*(k*k-1)/2, a1=(k-2)*(k-1)*2, a2=(k-2)*(k-1)*2;
-		cout << total-a1-a2 << "\n";
-	}
-	return 0;
+#include <iostream> 
+
+void solve(const int64_t &k) { 
+  // Answer = # of possible post. - # knights attacking.
+  
+  // Compute # ways to put two knights on the board.
+  // total = k*k choose 2
+  int64_t total = (k*k)*(k*k-1)/2;
+
+  // Compute # ways to arrange 2 knights so that they attack
+  // The number of 2x3 verticle and horizontal squares
+
+  int64_t vertical = (k-1)*(k-2)*2;
+  int64_t horizontal = (k-2)*(k-1)*2; 
+  int64_t attacks = vertical + horizontal; 
+
+  std::cout << total - attacks << "\n";
+}
+
+int main(void) { 
+  int64_t n;
+  std::cin >> n; 
+  for(int64_t k = 1; k <= n; k++) { 
+    solve(k);
+  }
 }
