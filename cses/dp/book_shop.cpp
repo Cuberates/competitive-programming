@@ -1,4 +1,4 @@
-#include <bits/stdc++.h>
+
 #include <iostream> 
 
 using namespace std;
@@ -40,44 +40,44 @@ int get_num_page (const Book& book) {
 int main() { 
 	useIO();
 
-   int total_num_books, max_price;
-   cin >> total_num_books >> max_price;
-   vector<Book> books(total_num_books, Book());
+  int total_num_books, max_price;
+  cin >> total_num_books >> max_price;
+  vector<Book> books(total_num_books, Book());
 
-   for(int book_ID = 0; book_ID < total_num_books; book_ID++) {
-      int price;
-      cin >> price; 
-      set_price(books[book_ID], price); 
-   }
-   for(int book_ID = 0; book_ID < total_num_books; book_ID++) { 
-      int num_page;
-      cin >> num_page;
-      set_num_page(books[book_ID], num_page);
-   }
-   
-   // This is simply a 0-1 Knapsack Problem
-   
-   vector<vector<int> > dp(total_num_books + 1, vector<int>(max_price + 1, 0));
-   // DP[NUM_BOOKS][MAX_PRICE] 
-   // Max number of pages for a list containing NUM_BOOKS, and a max price of MAX_PRICE
+  for(int book_ID = 0; book_ID < total_num_books; book_ID++) {
+    int price;
+    cin >> price; 
+    set_price(books[book_ID], price); 
+  }
+  for(int book_ID = 0; book_ID < total_num_books; book_ID++) { 
+    int num_page;
+    cin >> num_page;
+    set_num_page(books[book_ID], num_page);
+  }
+  
+  // This is simply a 0-1 Knapsack Problem
+  
+  vector<vector<int> > dp(total_num_books + 1, vector<int>(max_price + 1, 0));
+  // DP[NUM_BOOKS][MAX_PRICE] 
+  // Max number of pages for a list containing NUM_BOOKS, and a max price of MAX_PRICE
 
-   for(int num_books = 0; num_books <= total_num_books; num_books++) {
-      for(int price = 0; price <= max_price; price++) {
-         int book_ID = num_books-1;
-         if (book_ID <= -1) continue;
+  for(int num_books = 0; num_books <= total_num_books; num_books++) {
+    for(int price = 0; price <= max_price; price++) {
+        int book_ID = num_books-1;
+        if (book_ID <= -1) continue;
+      
+        const Book& curr_book = books[book_ID];
+        int book_price = get_price(curr_book);
+        int book_num_page = get_num_page(curr_book);
+
+        // The question is can we consider this book? 
+        int ans1 = 0, ans2 = 0; 
+        ans1 = (book_price <= price ? book_num_page + dp[num_books-1][price - book_price] : ans1);
+        ans2 = dp[num_books - 1][price];
         
-         const Book& curr_book = books[book_ID];
-         int book_price = get_price(curr_book);
-         int book_num_page = get_num_page(curr_book);
-
-         // The question is can we consider this book? 
-         int ans1 = 0, ans2 = 0; 
-         ans1 = (book_price <= price ? book_num_page + dp[num_books-1][price - book_price] : ans1);
-         ans2 = dp[num_books - 1][price];
-         
-         dp[num_books][price] = max(ans1, ans2);
-      }
-   }
-   cout << dp[total_num_books][max_price] << "\n";
+        dp[num_books][price] = max(ans1, ans2);
+    }
+  }
+  cout << dp[total_num_books][max_price] << "\n";
 }
 
