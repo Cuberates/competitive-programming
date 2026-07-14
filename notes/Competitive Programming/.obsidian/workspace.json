@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Codeforces/CF1105/B. AI Finds Nothing Here.md",
+                "file": "Codeforces/CF1105/C. Nim Game Is XOR Game.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "B. AI Finds Nothing Here"
+              "title": "C. Nim Game Is XOR Game"
             }
           }
         ]
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Codeforces/CF1105/B. AI Finds Nothing Here.md",
+                "file": "Codeforces/CF1105/C. Nim Game Is XOR Game.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for B. AI Finds Nothing Here"
+              "title": "Backlinks for C. Nim Game Is XOR Game"
             }
           },
           {
@@ -113,12 +113,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Codeforces/CF1105/B. AI Finds Nothing Here.md",
+                "file": "Codeforces/CF1105/C. Nim Game Is XOR Game.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from B. AI Finds Nothing Here"
+              "title": "Outgoing links from C. Nim Game Is XOR Game"
             }
           },
           {
@@ -156,13 +156,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Codeforces/CF1105/B. AI Finds Nothing Here.md",
+                "file": "Codeforces/CF1105/C. Nim Game Is XOR Game.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of B. AI Finds Nothing Here"
+              "title": "Outline of C. Nim Game Is XOR Game"
             }
           }
         ]
@@ -185,8 +185,9 @@
   },
   "active": "5935cfb45697496c",
   "lastOpenFiles": [
-    "Codeforces/CF1105/C. Nim Game Is XOR Game.md",
+    "Untitled",
     "Codeforces/CF1105/B. AI Finds Nothing Here.md",
+    "Codeforces/CF1105/C. Nim Game Is XOR Game.md",
     "Codeforces/CF1105",
     "11005",
     "Problem.md",

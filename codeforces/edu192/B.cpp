@@ -76,12 +76,15 @@
 #include <unordered_set>
 #include <thread>
 
+using ll = long long; 
+
 /**@attention: Random generator stolen from a random person */
 std::mt19937 rng(std::chrono::steady_clock::now().time_since_epoch().count());
 long long rand(long long L, long long R){
   return std::uniform_int_distribution<long long>(L, R)(rng);
 }
 
+void solve(); 
 
 int main() { 
   std::ios_base::sync_with_stdio(false);
@@ -90,6 +93,29 @@ int main() {
   int num_test = 0;   
   std::cin >> num_test; 
   for(int nt = 0; nt < num_test; nt++) {  
+    solve(); 
   }
 }
+
+constexpr size_t maxn = 2 * 10e5; 
+int v[maxn];
+
+void solve() {   
+  size_t n; 
+  std::cin >> n; 
+  for(size_t i = 0; i < n; i++)
+    std::cin >> v[i];
+
+  int *pref1 = new int[n];
+  int *pref2 = new int[n];
+
+  for(size_t i = 0; i < n; i++) {
+    pref1[i] = (v[i] <= 1 ? 1 : -1) + (i > 0 ? pref1[i-1] : 0);
+    pref2[i] = (v[i] <= 2 ? 1 : -1) + (i > 0 ? pref2[i-1] : 0);  
+  }
+
+
+
+}
+
 

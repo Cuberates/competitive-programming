@@ -9,4 +9,4 @@ Alice and Bob are playing a game with array $A$ consisting of $n$ non-negative i
 * Let M be the number of non-negative elements in the original array. If M = 2 then apply the operation once, and Bob the remaining elements is 1. Otherwise: 
 	(1) If M is even then, we exhaust one element, Bob has to exhaust one element, and due to the parity the remaining array will have one usable element when it's Bob's turn. 
 	(2) If M is odd, then we only need to decrease a pair of elements by 1. If Bob tries to exhaust the element, then we do the same operation. Due to the parity the remaining number of usable element is 1, and it's Bob turn again.
-* Then the answer is the number of indices such that $a_i \ \text{XOR} \ X  < a_i$ 
+* Then the answer is the number of indices such that $a_i \ \text{XOR} \ X  < a_i$
