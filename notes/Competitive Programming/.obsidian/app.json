@@ -1,5 +1,10 @@
 {
   "spellcheck": false,
   "showLineNumber": true,
-  "vimMode": true
+  "vimMode": true,
+  "useTab": true,
+  "tabSize": 3,
+  "foldHeading": false,
+  "foldIndent": false,
+  "showIndentGuide": false
 }

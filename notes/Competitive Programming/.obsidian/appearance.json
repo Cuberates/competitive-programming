@@ -1,5 +1,9 @@
 {
   "interfaceFontFamily": "",
-  "textFontFamily": "PT Serif",
-  "monospaceFontFamily": "Andale Mono"
+  "textFontFamily": "Fira Code",
+  "monospaceFontFamily": "Fira Code",
+  "theme": "moonstone",
+  "cssTheme": "Solarized",
+  "accentColor": "",
+  "translucency": false
 }
