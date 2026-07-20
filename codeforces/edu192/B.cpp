@@ -76,15 +76,16 @@
 #include <unordered_set>
 #include <thread>
 
-using ll = long long; 
-
 /**@attention: Random generator stolen from a random person */
 std::mt19937 rng(std::chrono::steady_clock::now().time_since_epoch().count());
 long long rand(long long L, long long R){
   return std::uniform_int_distribution<long long>(L, R)(rng);
 }
 
-void solve(); 
+using ll = long long; 
+const ll INF = 2e5+1;
+
+void gabagoo(); 
 
 int main() { 
   std::ios_base::sync_with_stdio(false);
@@ -93,28 +94,39 @@ int main() {
   int num_test = 0;   
   std::cin >> num_test; 
   for(int nt = 0; nt < num_test; nt++) {  
-    solve(); 
+    gabagoo(); 
   }
 }
 
-constexpr size_t maxn = 2 * 10e5; 
-int v[maxn];
-
-void solve() {   
-  size_t n; 
+void gabagoo() {   
+  ll n; 
   std::cin >> n; 
-  for(size_t i = 0; i < n; i++)
+  std::vector<ll> v(n);
+  for(ll i = 0; i < n; i++) { 
     std::cin >> v[i];
-
-  int *pref1 = new int[n];
-  int *pref2 = new int[n];
-
-  for(size_t i = 0; i < n; i++) {
-    pref1[i] = (v[i] <= 1 ? 1 : -1) + (i > 0 ? pref1[i-1] : 0);
-    pref2[i] = (v[i] <= 2 ? 1 : -1) + (i > 0 ? pref2[i-1] : 0);  
   }
-     
 
-}
+  std::vector<int> cnt1(n+1, 0), cnt2(n+1, 0);
+  
+  for(int i = 1; i <= n; i++) { 
+    cnt1[i] = cnt1[i-1] + (v[i-1] == 1 ? 1 : -1);
+    cnt2[i] = cnt2[i-1] + (v[i-1] == 3 ? -1 : 1);
+  }
+
+  std::vector<int> min2(n+1, INF);  
+
+  bool good = false; 
+  
+  for(int i = 1; i <= n; i++) {
+    min2[i] = min2[i-1]; 
+    if (cnt1[i] >= 0) min2[i] = std::min(min2[i-1], cnt2[i]);
+  }
+
+  for(int y = 2; y <= n-1; y++) { 
+    if (cnt2[y] >= min2[y-1]) good = true; 
+  }
+
+  std::cout << (good ? "YES" : "NO") << '\n';
+} 
 
 
