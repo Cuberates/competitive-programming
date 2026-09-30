@@ -1,4 +1,4 @@
-#include <random> 
+#include <random>
 #include <cassert>
 #include <cctype>
 #include <cerrno>
@@ -77,26 +77,26 @@
 /**@attention: Random generator stolen from a random person */
 std::mt19937 rng(std::chrono::steady_clock::now().time_since_epoch().count());
 long long rand(long long L, long long R){
-  return std::uniform_int_distribution<long long>(L, R)(rng);
+   return std::uniform_int_distribution<long long>(L, R)(rng);
 }
 
-void solve(); 
+void solve();
 
-int main() { 
-  std::ios_base::sync_with_stdio(false);
-  std::cin.tie(0); std::cout.tie(0);
-  
-  int num_test = 0;   
-  std::cin >> num_test; 
-  for(int nt = 0; nt < num_test; nt++) {  
-    solve(); 
-  }
+int main() {
+   std::ios_base::sync_with_stdio(false);
+   std::cin.tie(0); std::cout.tie(0);
+
+   int num_test = 0;
+   std::cin >> num_test;
+   for(int nt = 0; nt < num_test; nt++) {
+   solve();
+   }
 }
 
 void solve() {
-  long long A, B, C; 
-  std::cin >> A >> B >> C; 
-  if (A >= B) std::cout << A + C - B << '\n';
-  else std::cout << std::max(B - A, std::abs(A + C - B)) << '\n';
+   long long A, B, C;
+   std::cin >> A >> B >> C;
+   if (A >= B) std::cout << A + C - B << '\n';
+   else std::cout << std::max(B - A, std::abs(A + C - B)) << '\n';
 
 }

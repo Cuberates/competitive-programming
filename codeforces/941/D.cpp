@@ -1,6 +1,6 @@
-#include <random> 
-#include <random> 
-#include <random> 
+#include <random>
+#include <random>
+#include <random>
 #include <cassert>
 #include <cctype>
 #include <cerrno>
@@ -76,60 +76,60 @@
 #include <unordered_set>
 #include <thread>
 
-using ll = long long; 
+using ll = long long;
 
 /**@attention: Random generator stolen from a random person */
 std::mt19937 rng(std::chrono::steady_clock::now().time_since_epoch().count());
 long long rand(long long L, long long R){
-  return std::uniform_int_distribution<long long>(L, R)(rng);
+   return std::uniform_int_distribution<long long>(L, R)(rng);
 }
 
-void solve(); 
+void solve();
 
-int main() { 
-  std::ios_base::sync_with_stdio(false);
-  std::cin.tie(0); std::cout.tie(0);
-  
-  int num_test = 0;   
-  std::cin >> num_test; 
-  for(int nt = 0; nt < num_test; nt++) {  
-    solve(); 
-  }
+int main() {
+   std::ios_base::sync_with_stdio(false);
+   std::cin.tie(0); std::cout.tie(0);
+
+   int num_test = 0;
+   std::cin >> num_test;
+   for(int nt = 0; nt < num_test; nt++) {
+   solve();
+   }
 }
-void solve() {   
-  int n;
-  std::cin >> n; 
+void solve() {
+   int n;
+   std::cin >> n;
 
-  std::vector<std::vector<int> > points(n+1, std::vector<int>(2, 0));
+   std::vector<std::vector<int> > points(n+1, std::vector<int>(2, 0));
 
 
-  ll ans = 0; 
+   ll ans = 0;
 
-  for(int i = 0; i < n; i++) { 
-    ll x, y; 
-    std::cin >> x >> y; 
-    points[x][y] = 1; 
-  }
+   for(int i = 0; i < n; i++) {
+   ll x, y;
+   std::cin >> x >> y;
+   points[x][y] = 1;
+   }
 
-  for(int x = 0; x <= n; x++) { 
-    for(int y = 0; y < 2; y++) {
+   for(int x = 0; x <= n; x++) {
+   for(int y = 0; y < 2; y++) {
       if (points[x][y] == 1) {
-        if (y && points[x][0]) ans = ans + n - 2; 
-        else if (!y && points[x][1]) ans = ans + n - 2;
+         if (y && points[x][0]) ans = ans + n - 2;
+         else if (!y && points[x][1]) ans = ans + n - 2;
       }
-    }
-  }
-  ans /= 2; 
+   }
+   }
+   ans /= 2;
 
-  for(int x = 0; x <= n; x++) { 
-    if (points[x][1] && x-1 >= 0 && x+1 <= n && points[x-1][0] && points[x+1][0]) ans++; 
-  }
-  for(int x = 0; x <= n; x++) { 
-    if (points[x][0] && x-1 >= 0 && x+1 <= n && points[x-1][1] && points[x+1][1]) ans++; 
-  }
+   for(int x = 0; x <= n; x++) {
+   if (points[x][1] && x-1 >= 0 && x+1 <= n && points[x-1][0] && points[x+1][0]) ans++;
+   }
+   for(int x = 0; x <= n; x++) {
+   if (points[x][0] && x-1 >= 0 && x+1 <= n && points[x-1][1] && points[x+1][1]) ans++;
+   }
 
 
-  std::cout << ans << "\n";
+   std::cout << ans << "\n";
 
 }
 /**
@@ -142,7 +142,7 @@ triangle inequality???
 
 if 2 points p1, p2 lie on the same vertical line, then the number of triangles = n-2?
 
-they are unique proof: fixing p1, p2 there are n-2 other point, since these points are pairwise unique, 
+they are unique proof: fixing p1, p2 there are n-2 other point, since these points are pairwise unique,
 the triangles must be unique
 
 lemma there is only one triangle with mid point;

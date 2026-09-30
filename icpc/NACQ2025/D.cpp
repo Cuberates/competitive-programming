@@ -76,27 +76,27 @@
 
 using namespace std;
 
-vector<string> a; 
-int r, c, sx, sy, ex, ey; 
+vector<string> a;
+int r, c, sx, sy, ex, ey;
 
 int dfs(int u, int v, char dir = 'r') {
-  if (u == ex && v == ey) return 1;
-  
-  if (dir == 'r') { 
-    if (u-1 >= 0 && a[u-1][v] != '1') {}  
-  }
+   if (u == ex && v == ey) return 1;
 
-  if (dir == 'l') {
+   if (dir == 'r') {
+   if (u-1 >= 0 && a[u-1][v] != '1') {}
+   }
 
-  }
-  return 0;
+   if (dir == 'l') {
+
+   }
+   return 0;
 }
 
-int main(void) { 
-  cin >> r >> c >> sx >> sy >> ex >> ey;
-  a = vector<string>(r);
-  for(int i = 0; i < r; i++) { 
-    cin >> a[i];
-  }
-  cout << (dfs(r, c) ? 1 : 0);
+int main(void) {
+   cin >> r >> c >> sx >> sy >> ex >> ey;
+   a = vector<string>(r);
+   for(int i = 0; i < r; i++) {
+   cin >> a[i];
+   }
+   cout << (dfs(r, c) ? 1 : 0);
 }

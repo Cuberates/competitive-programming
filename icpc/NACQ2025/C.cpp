@@ -76,13 +76,13 @@
 
 using namespace std;
 
-int main(void) { 
-  int n, k; cin >> n >> k;
-  set<int> d; 
-  for(int i = 0; i < n; i++) { 
-    int p; cin >> p; 
-    d.insert(p);
-  }
-  int unique = d.size(); 
-  cout << min(unique, k) << "\n";
+int main(void) {
+   int n, k; cin >> n >> k;
+   set<int> d;
+   for(int i = 0; i < n; i++) {
+   int p; cin >> p;
+   d.insert(p);
+   }
+   int unique = d.size();
+   cout << min(unique, k) << "\n";
 }

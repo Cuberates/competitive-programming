@@ -1,4 +1,4 @@
-#include <random> 
+#include <random>
 #include <cassert>
 #include <cctype>
 #include <cerrno>
@@ -75,66 +75,66 @@
 #include <thread>
 
 using i32 = int32_t;
-using u32 = uint32_t;  
-using i64 = int64_t; 
+using u32 = uint32_t;
+using i64 = int64_t;
 using u64 = uint64_t;
 
 namespace Cuberates {
-  #define SPACE std::cout << ' ';
-  #define NEXTLINE std::cout << '\n';
-  template<typename T> 
-  void _debug(const T& t) { std::cout << t; }
-  template<typename T, typename V>
-  void _debug(const std::pair<T, V>& ptv) { _debug(ptv.first); SPACE; _debug(ptv.second);} 
-  template<typename T> 
-  void _debug(const std::vector<T>& vt) { for (const auto &v : vt) { _debug(v); SPACE; } }
-  template<typename T, typename V> 
-  void _debug(const std::vector<std::pair<T, V>>& vptv) { for (const auto &ptv : vptv) { _debug(ptv); NEXTLINE; }}   
+   #define SPACE std::cout << ' ';
+   #define NEXTLINE std::cout << '\n';
+   template<typename T>
+   void _debug(const T& t) { std::cout << t; }
+   template<typename T, typename V>
+   void _debug(const std::pair<T, V>& ptv) { _debug(ptv.first); SPACE; _debug(ptv.second);}
+   template<typename T>
+   void _debug(const std::vector<T>& vt) { for (const auto &v : vt) { _debug(v); SPACE; } }
+   template<typename T, typename V>
+   void _debug(const std::vector<std::pair<T, V>>& vptv) { for (const auto &ptv : vptv) { _debug(ptv); NEXTLINE; }}
 };
 
 #define all(v) (v).begin(), (v).end()
-#define debug(v) std::cout << #v << ": "; Cuberates::_debug(v); std::cout << '\n'; 
+#define debug(v) std::cout << #v << ": "; Cuberates::_debug(v); std::cout << '\n';
 
 std::mt19937 rng(std::chrono::steady_clock::now().time_since_epoch().count());
-template<typename T> 
+template<typename T>
 T irand(T L, T R){ return std::uniform_int_distribution<T>(L, R)(rng); }
-template<typename T> 
+template<typename T>
 T rand(T L, T R){ return std::uniform_real_distribution<T>(L, R)(rng); }
 
-void solve(); 
+void solve();
 
-int main() { 
-  std::ios_base::sync_with_stdio(false);
-  std::cin.tie(0); std::cout.tie(0);
-  
-  int num_test = 0;   
-  std::cin >> num_test; 
-  for(int nt = 0; nt < num_test; nt++) {  
-    solve(); 
-  }
+int main() {
+   std::ios_base::sync_with_stdio(false);
+   std::cin.tie(0); std::cout.tie(0);
+
+   int num_test = 0;
+   std::cin >> num_test;
+   for(int nt = 0; nt < num_test; nt++) {
+   solve();
+   }
 }
 
 void solve() {
-  i64 n; 
-  std::cin >> n; 
-  std::vector<i64> p(n), bad;
+   i64 n;
+   std::cin >> n;
+   std::vector<i64> p(n), bad;
 
-  for (i64 i = 0; i < n; i++) {
-    std::cin >> p[i];
-    if (p[i] != (i+1)) bad.push_back(i);
-  }
+   for (i64 i = 0; i < n; i++) {
+   std::cin >> p[i];
+   if (p[i] != (i+1)) bad.push_back(i);
+   }
 
-  std::vector<i64> trans = p; 
-  // debug(bad);
+   std::vector<i64> trans = p;
+   // debug(bad);
 
-  for(i64 i = 0; i < bad.size(); i++) { 
-    trans[bad[i]] = p[bad[bad.size() - i - 1]]; 
-  }
+   for(i64 i = 0; i < bad.size(); i++) {
+   trans[bad[i]] = p[bad[bad.size() - i - 1]];
+   }
 
-  // debug(trans);
-  
-  bool good = std::is_sorted(all(trans));
-  std::cout << (good ? "YES" : "NO") << '\n';
+   // debug(trans);
+
+   bool good = std::is_sorted(all(trans));
+   std::cout << (good ? "YES" : "NO") << '\n';
 
 }
 

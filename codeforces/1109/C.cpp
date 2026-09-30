@@ -1,4 +1,4 @@
-#include <random> 
+#include <random>
 #include <numeric>
 #include <cassert>
 #include <cctype>
@@ -75,49 +75,49 @@
 #include <unordered_set>
 #include <thread>
 
-using ll = long long; 
+using ll = long long;
 
 /**@attention: Random generator stolen from a random person */
 std::mt19937 rng(std::chrono::steady_clock::now().time_since_epoch().count());
 long long rand(long long L, long long R){
-  return std::uniform_int_distribution<long long>(L, R)(rng);
+   return std::uniform_int_distribution<long long>(L, R)(rng);
 }
 
-uint32_t solve(); 
+uint32_t solve();
 
-int main() { 
-  std::ios_base::sync_with_stdio(false);
-  std::cin.tie(0); std::cout.tie(0);
-  
-  int num_test = 0;   
-  std::cin >> num_test; 
-  for(int nt = 0; nt < num_test; nt++) {  
-    solve(); 
-  }
-} 
+int main() {
+   std::ios_base::sync_with_stdio(false);
+   std::cin.tie(0); std::cout.tie(0);
 
-uint32_t solve() { 
-  size_t n; 
-  ll x, y; 
-  std::cin >> n >> x >> y; 
+   int num_test = 0;
+   std::cin >> num_test;
+   for(int nt = 0; nt < num_test; nt++) {
+   solve();
+   }
+}
 
-  std::vector<ll> perm(n);
+uint32_t solve() {
+   size_t n;
+   ll x, y;
+   std::cin >> n >> x >> y;
 
-  for(size_t i {0}; i < n; i++) { 
-    std::cin >> perm[i];
-  } 
+   std::vector<ll> perm(n);
 
-  ll g = std::gcd(x, y);
+   for(size_t i {0}; i < n; i++) {
+   std::cin >> perm[i];
+   }
 
-  // benzout: there exists a, b such that a * x + b * y = multiples of g;
-  // check if they are in the same residue class; 
+   ll g = std::gcd(x, y);
 
-  for(size_t i = 0; i < n; i++) { 
-    int rem = (i+1) % g; 
-    if (rem != perm[i] % g) { 
+   // benzout: there exists a, b such that a * x + b * y = multiples of g;
+   // check if they are in the same residue class;
+
+   for(size_t i = 0; i < n; i++) {
+   int rem = (i+1) % g;
+   if (rem != perm[i] % g) {
       std::cout << "NO \n";
-      return 0; 
-    }
-  }
-  std::cout << "YES \n"; 
+      return 0;
+   }
+   }
+   std::cout << "YES \n";
 }

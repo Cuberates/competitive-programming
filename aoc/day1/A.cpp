@@ -1,18 +1,18 @@
-#include <iostream> 
-#include <vector> 
-#include <string> 
-#include <cmath> 
+#include <iostream>
+#include <vector>
+#include <string>
+#include <cmath>
 #include <map>
-#include <set> 
+#include <set>
 
 using namespace std;
 
-int main(void) { 
-   long long ans = 0; 
-   vector<long long> left, right; 
+int main(void) {
+   long long ans = 0;
+   vector<long long> left, right;
    int a, b;
-   
-   while(cin >> a >> b) { 
+
+   while(cin >> a >> b) {
       left.push_back(a);
       right.push_back(b);
    }

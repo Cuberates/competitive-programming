@@ -1,4 +1,4 @@
-#include <random> 
+#include <random>
 #include <cassert>
 #include <cctype>
 #include <cerrno>
@@ -77,31 +77,31 @@
 /**@attention: Random generator stolen from a random person */
 std::mt19937 rng(std::chrono::steady_clock::now().time_since_epoch().count());
 int64_t rand(long long L, long long R){
-  return std::uniform_int_distribution<long long>(L, R)(rng);
+   return std::uniform_int_distribution<long long>(L, R)(rng);
 }
 
 using i32 = int32_t;
-using u32 = uint32_t;  
-using i64 = int64_t; 
-using u64 = uint64_t; 
+using u32 = uint32_t;
+using i64 = int64_t;
+using u64 = uint64_t;
 
 #define all(v) (v).begin(), (v).end()
 
-void solve(); 
+void solve();
 
-int main() { 
-  std::ios_base::sync_with_stdio(false);
-  std::cin.tie(0); std::cout.tie(0);
-  
-  int num_test = 0;   
-  std::cin >> num_test; 
-  for(int nt = 0; nt < num_test; nt++) {  
-    solve(); 
-  }
+int main() {
+   std::ios_base::sync_with_stdio(false);
+   std::cin.tie(0); std::cout.tie(0);
+
+   int num_test = 0;
+   std::cin >> num_test;
+   for(int nt = 0; nt < num_test; nt++) {
+   solve();
+   }
 }
 
 void solve() {
-  u32 n, a, b, c; 
-  std::cin >> n >> a >> b >> c; 
-  std::cout << n - std::min(a, std::min(b, c)) << "\n";
+   u32 n, a, b, c;
+   std::cin >> n >> a >> b >> c;
+   std::cout << n - std::min(a, std::min(b, c)) << "\n";
 }

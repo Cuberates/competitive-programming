@@ -1,4 +1,4 @@
-#include <random> 
+#include <random>
 #include <cassert>
 #include <cctype>
 #include <cerrno>
@@ -75,38 +75,38 @@
 #include <thread>
 
 using i32 = int32_t;
-using u32 = uint32_t;  
-using i64 = int64_t; 
+using u32 = uint32_t;
+using i64 = int64_t;
 using u64 = uint64_t;
 
 namespace Cuberates {
-  #define debug(v) std::cout << #v << ": "; Cuberates::_debug(v); std::cout << '\n'; 
-  #define SPACE std::cout << ' ';
-  #define NEXTLINE std::cout << '\n';
-  template<typename T> 
-  void _debug(const T& t) { std::cout << t; }
-  template<typename T, typename V>
-  void _debug(const std::pair<T, V>& ptv) { _debug(ptv.first); SPACE; _debug(ptv.second);} 
-  template<typename T> 
-  void _debug(const std::vector<T>& vt) { for (const auto &v : vt) { _debug(v); SPACE; } }
-  template<typename T, typename V> 
-  void _debug(const std::vector<std::pair<T, V>>& vptv) { for (const auto &ptv : vptv) { _debug(ptv); NEXTLINE; }}   
+   #define debug(v) std::cout << #v << ": "; Cuberates::_debug(v); std::cout << '\n';
+   #define SPACE std::cout << ' ';
+   #define NEXTLINE std::cout << '\n';
+   template<typename T>
+   void _debug(const T& t) { std::cout << t; }
+   template<typename T, typename V>
+   void _debug(const std::pair<T, V>& ptv) { _debug(ptv.first); SPACE; _debug(ptv.second);}
+   template<typename T>
+   void _debug(const std::vector<T>& vt) { for (const auto &v : vt) { _debug(v); SPACE; } }
+   template<typename T, typename V>
+   void _debug(const std::vector<std::pair<T, V>>& vptv) { for (const auto &ptv : vptv) { _debug(ptv); NEXTLINE; }}
 };
 
-const i64 MAX_N = 3e5;  
+const i64 MAX_N = 3e5;
 
 std::vector<i64> marked(MAX_N + 1, 0);
-std::vector<std::vector<i64>> primeFactor(MAX_N + 1); 
-void sieve() { 
-  for (i64 p = 2; p <= MAX_N; p++) { 
-    if (!marked[p]) { 
+std::vector<std::vector<i64>> primeFactor(MAX_N + 1);
+void sieve() {
+   for (i64 p = 2; p <= MAX_N; p++) {
+   if (!marked[p]) {
       // p is prime
-      for (i64 mul = 1; p * mul <= MAX_N; mul++) { 
-        primeFactor[p * mul].push_back(p); 
-        marked[p * mul] = 1; 
+      for (i64 mul = 1; p * mul <= MAX_N; mul++) {
+         primeFactor[p * mul].push_back(p);
+         marked[p * mul] = 1;
       }
-    } 
-  }
+   }
+   }
 }
 
 
@@ -115,57 +115,56 @@ void sieve() {
 #define se second
 
 std::mt19937 rng(std::chrono::steady_clock::now().time_since_epoch().count());
-template<typename T> 
+template<typename T>
 T irand(T L, T R){ return std::uniform_int_distribution<T>(L, R)(rng); }
-template<typename T> 
+template<typename T>
 T rand(T L, T R){ return std::uniform_real_distribution<T>(L, R)(rng); }
 
 
-void solve(); 
+void solve();
 
-int main() { 
-  std::ios_base::sync_with_stdio(false);
-  std::cin.tie(0); std::cout.tie(0);
- 
-  sieve();
+int main() {
+   std::ios_base::sync_with_stdio(false);
+   std::cin.tie(0); std::cout.tie(0);
 
-  int num_test = 0;   
-  std::cin >> num_test; 
-  for(int nt = 0; nt < num_test; nt++) {  
-    solve(); 
-  }
+   sieve();
+
+   int num_test = 0;
+   std::cin >> num_test;
+   for(int nt = 0; nt < num_test; nt++) {
+   solve();
+   }
 }
 
-void solve() { 
-  i64 n, x; 
-  std::cin >> n >> x; 
+void solve() {
+   i64 n, x;
+   std::cin >> n >> x;
 
-  std::vector<i64> a(n); 
-  std::unordered_map<i64, std::vector<i64>> groups;
+   std::vector<i64> a(n);
+   std::unordered_map<i64, std::vector<i64>> groups;
 
-  // groups[p] = all the elements that can be expressed in terms of p*k 
-  for (i64 i = 0; i < n; i++) { 
-    std::cin >> a[i];
-    for (const i64 &pf : primeFactor[a[i]]) { 
+   // groups[p] = all the elements that can be expressed in terms of p*k
+   for (i64 i = 0; i < n; i++) {
+   std::cin >> a[i];
+   for (const i64 &pf : primeFactor[a[i]]) {
       groups[pf].push_back(a[i]);
-    }
-  }
+   }
+   }
 
-  i64 ans = 0; 
-  i64 sum = 0; 
+   i64 ans = 0;
+   i64 sum = 0;
 
-  // For each prime factor pf of x
-  // Calculate the sum of the elements in group[pf]
-  for (const auto& pf : primeFactor[x]) { 
-    sum = 0; 
-    for (i64 i = 0; i < groups[pf].size(); i++) { 
-      sum += groups[pf][i]; 
-    }
-    ans = std::max(ans, sum);
-  }
+   // For each prime factor pf of x
+   // Calculate the sum of the elements in group[pf]
+   for (const auto& pf : primeFactor[x]) {
+   sum = 0;
+   for (i64 i = 0; i < groups[pf].size(); i++) {
+      sum += groups[pf][i];
+   }
+   ans = std::max(ans, sum);
+   }
 
-  std::cout << ans << "\n";
+   std::cout << ans << "\n";
 
-} 
+}
 
- 

@@ -76,33 +76,33 @@
 using namespace std;
 
 bool compare(const string &u, const string &v) {
-  return u.length() < v.length();
+   return u.length() < v.length();
 }
 
-int cost(const string &team_name) { 
-  return team_name.length();
+int cost(const string &team_name) {
+   return team_name.length();
 }
 
-bool is_eligible (const string &team_name) { 
-  set<char> used_letters;
-  for(char c : team_name) {
-    if(used_letters.count(c))
+bool is_eligible (const string &team_name) {
+   set<char> used_letters;
+   for(char c : team_name) {
+   if(used_letters.count(c))
       return false;
-  }
-  return true;
+   }
+   return true;
 }
 
 int main(void) {
-  ios_base::sync_with_stdio(0);
-  cin.tie(0); cout.tie(0);
-  
-  int num_problems, num_teams; 
-  cin >> num_problems >> num_teams;   
+   ios_base::sync_with_stdio(0);
+   cin.tie(0); cout.tie(0);
 
-  vector<string> teams(num_teams);
-  for(int i = 0; i < num_teams; i++)
-    cin >> teams[i];
+   int num_problems, num_teams;
+   cin >> num_problems >> num_teams;
 
-  sort(teams.begin(), teams.end(), compare);
- 
+   vector<string> teams(num_teams);
+   for(int i = 0; i < num_teams; i++)
+   cin >> teams[i];
+
+   sort(teams.begin(), teams.end(), compare);
+
 }

@@ -1,4 +1,4 @@
-#include <random> 
+#include <random>
 #include <cassert>
 #include <cctype>
 #include <cerrno>
@@ -75,70 +75,70 @@
 #include <thread>
 
 using i32 = int32_t;
-using u32 = uint32_t;  
-using i64 = int64_t; 
+using u32 = uint32_t;
+using i64 = int64_t;
 using u64 = uint64_t;
 
 namespace Cuberates {
-  #define SPACE std::cout << ' ';
-  #define NEXTLINE std::cout << '\n';
-  template<typename T> 
-  void _debug(const T& t) { std::cout << t; }
-  template<typename T, typename V>
-  void _debug(const std::pair<T, V>& ptv) { _debug(ptv.first); SPACE; _debug(ptv.second);} 
-  template<typename T> 
-  void _debug(const std::vector<T>& vt) { for (const auto &v : vt) { _debug(v); SPACE; } }
-  template<typename T, typename V> 
-  void _debug(const std::vector<std::pair<T, V>>& vptv) { for (const auto &ptv : vptv) { _debug(ptv); NEXTLINE; }}   
+   #define SPACE std::cout << ' ';
+   #define NEXTLINE std::cout << '\n';
+   template<typename T>
+   void _debug(const T& t) { std::cout << t; }
+   template<typename T, typename V>
+   void _debug(const std::pair<T, V>& ptv) { _debug(ptv.first); SPACE; _debug(ptv.second);}
+   template<typename T>
+   void _debug(const std::vector<T>& vt) { for (const auto &v : vt) { _debug(v); SPACE; } }
+   template<typename T, typename V>
+   void _debug(const std::vector<std::pair<T, V>>& vptv) { for (const auto &ptv : vptv) { _debug(ptv); NEXTLINE; }}
 };
 
 #define all(v) (v).begin(), (v).end()
 #define debug(v) std::cout << #v << ": "; Cuberates::_debug(v); std::cout << '\n';
 
 std::mt19937 rng(std::chrono::steady_clock::now().time_since_epoch().count());
-template<typename T> 
+template<typename T>
 T irand(T L, T R){ return std::uniform_int_distribution<T>(L, R)(rng); }
-template<typename T> 
+template<typename T>
 T rand(T L, T R){ return std::uniform_real_distribution<T>(L, R)(rng); }
 
-void solve(); 
+void solve();
 
-int main() { 
-  std::ios_base::sync_with_stdio(false);
-  std::cin.tie(0); std::cout.tie(0);
-  
-  int num_test = 0;   
-  std::cin >> num_test; 
-  for(int nt = 0; nt < num_test; nt++) {  
-    solve(); 
-  }
+int main() {
+   std::ios_base::sync_with_stdio(false);
+   std::cin.tie(0); std::cout.tie(0);
+
+   int num_test = 0;
+   std::cin >> num_test;
+   for(int nt = 0; nt < num_test; nt++) {
+   solve();
+   }
 }
 
 void solve() {
-  i64 n, m; 
-  std::cin >> n >> m; 
-  std::vector<i64> draft(n);
+   i64 n, m;
+   std::cin >> n >> m;
+   std::vector<i64> draft(n);
 
-  for (i64 &d : draft) { 
-    std::cin >> d; 
-  }
+   for (i64 &d : draft) {
+   std::cin >> d;
+   }
 
-  // debug(draft);
+   // debug(draft);
 
-  std::priority_queue<i64> pq;
+   std::priority_queue<i64> pq;
 
-  i64 curr_sum = std::accumulate(draft.begin(), draft.begin() + (m-1), 0LL); 
-  i64 ans = std::numeric_limits<i64>::min(); 
-  
-  for (i64 i = 0; i < m-1; i++) { pq.push(draft[i]); }
+   i64 curr_sum = std::accumulate(draft.begin(), draft.begin() + (m-1), 0LL);
+   i64 ans = std::numeric_limits<i64>::min();
 
-  for (i64 i = m-1; i < n; i++) { 
-    ans = std::max(ans, m * draft[i] - curr_sum); 
-    curr_sum += draft[i];
-    pq.push(draft[i]);
-    curr_sum -= pq.top();
-    pq.pop();  
-  } 
-  std::cout << ans << '\n';
+   for (i64 i = 0; i < m-1; i++) { pq.push(draft[i]); }
+
+   for (i64 i = m-1; i < n; i++) {
+   ans = std::max(ans, m * draft[i] - curr_sum);
+   curr_sum += draft[i];
+   pq.push(draft[i]);
+   curr_sum -= pq.top();
+   pq.pop();
+   }
+   std::cout << ans << '\n';
 
 }

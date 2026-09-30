@@ -1,4 +1,4 @@
-#include <random> 
+#include <random>
 #include <cassert>
 #include <cctype>
 #include <cerrno>
@@ -77,53 +77,53 @@
 /**@attention: Random generator stolen from a random person */
 std::mt19937 rng(std::chrono::steady_clock::now().time_since_epoch().count());
 long long rand(long long L, long long R){
-  return std::uniform_int_distribution<long long>(L, R)(rng);
+   return std::uniform_int_distribution<long long>(L, R)(rng);
 }
 
-void solve(); 
-int main() { 
-  std::ios_base::sync_with_stdio(false);
-  std::cin.tie(0); std::cout.tie(0);
-  
-  int num_test = 0;   
-  std::cin >> num_test; 
-  for(int nt = 0; nt < num_test; nt++) {  
-    solve(); 
-  }
+void solve();
+int main() {
+   std::ios_base::sync_with_stdio(false);
+   std::cin.tie(0); std::cout.tie(0);
+
+   int num_test = 0;
+   std::cin >> num_test;
+   for(int nt = 0; nt < num_test; nt++) {
+   solve();
+   }
 }
 
 void solve() {
-  int64_t n; std::cin >> n; 
-  std::vector<int64_t> a(n), b(n);
-  for(int i = 0; i < n; i++) { 
-    std::cin >> a[i];
-  } 
-  for(int i = 0; i < n; i++) { 
-    std::cin >> b[i];
-  }
-  for(int i = n-1; i >= 1; i--) { 
-    if (a[i] > b[i]) a[i-1] += (a[i]-b[i]);
-    a[i] = b[i];
-  }
-  int good = true; 
-  if (a[0] > b[0]) good = false; 
+   int64_t n; std::cin >> n;
+   std::vector<int64_t> a(n), b(n);
+   for(int i = 0; i < n; i++) {
+   std::cin >> a[i];
+   }
+   for(int i = 0; i < n; i++) {
+   std::cin >> b[i];
+   }
+   for(int i = n-1; i >= 1; i--) {
+   if (a[i] > b[i]) a[i-1] += (a[i]-b[i]);
+   a[i] = b[i];
+   }
+   int good = true;
+   if (a[0] > b[0]) good = false;
 
-  std::cout << (good ? "YES" : "NO") << "\n";
-} 
+   std::cout << (good ? "YES" : "NO") << "\n";
+}
 
 /*
 - If we only pick l = r = i then the element can only increase
 - Decrease a[i] by picking l = i-1, r = i => dst(i, l) = i-(i-1) = 1 =
 but then a[i+1] will increase
 
-o1 Pick l=i-1, r=i => a[i-1]++ ; a[i]--; 
+o1 Pick l=i-1, r=i => a[i-1]++ ; a[i]--;
 o2 Pick l=r=i => a[i]++;
 
-Pick l=i-2, r=i => a[i-2]++; a[i-1]--; a[i]++; 
+Pick l=i-2, r=i => a[i-2]++; a[i-1]--; a[i]++;
 => This increases the sum of array by 1;
 
 a[i] < b[i] => Apply o1 b[i]-a[i] times
-a[i] > b[i] 
-  b[i-1] - a[i-1] = a[i] - b[i] then apply o2 a[i]-b[i] times
+a[i] > b[i]
+   b[i-1] - a[i-1] = a[i] - b[i] then apply o2 a[i]-b[i] times
 
 */

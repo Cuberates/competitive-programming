@@ -76,16 +76,16 @@
 using namespace std;
 
 int main(void) {
-  ios_base::sync_with_stdio(0);
-  cin.tie(0); cout.tie(0); 
-  
-  string s; 
-  cin >> s;
-  
-  vector<int> critical_points; 
-  for(int i = 0; i < s.length(); i++) { 
-    if (i > 0 && s[i] < s[i-1]) 
+   ios_base::sync_with_stdio(0);
+   cin.tie(0); cout.tie(0);
+
+   string s;
+   cin >> s;
+
+   vector<int> critical_points;
+   for(int i = 0; i < s.length(); i++) {
+   if (i > 0 && s[i] < s[i-1])
       critical_points.push_back(i);
-  }
-  
+   }
+
 }
