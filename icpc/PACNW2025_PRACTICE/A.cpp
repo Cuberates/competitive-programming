@@ -76,18 +76,18 @@
 using namespace std;
 
 int main(void) {
-   ios_base::sync_with_stdio(0);
-   cin.tie(0); cout.tie(0);
+  ios_base::sync_with_stdio(0);
+  cin.tie(0); cout.tie(0);
 
-   long long N;
-   cin >> N;
-   vector<int> price(N);
-   for(int i = 0; i < N; i++)
-   cin >> price[i];
+  long long N;
+  cin >> N;
+  vector<int> price(N);
+  for(int i = 0; i < N; i++)
+  cin >> price[i];
 
-   sort(price.begin(), price.end());
-   int max_reimburse = price[N-1] / 2;
-   int min_flight_price = price[0];
+  sort(price.begin(), price.end());
+  int max_reimburse = price[N-1] / 2;
+  int min_flight_price = price[0];
 
-   cout << max(0, min_flight_price - max_reimburse) << "\n";
+  cout << max(0, min_flight_price - max_reimburse) << "\n";
 }

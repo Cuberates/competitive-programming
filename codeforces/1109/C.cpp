@@ -80,44 +80,44 @@ using ll = long long;
 /**@attention: Random generator stolen from a random person */
 std::mt19937 rng(std::chrono::steady_clock::now().time_since_epoch().count());
 long long rand(long long L, long long R){
-   return std::uniform_int_distribution<long long>(L, R)(rng);
+  return std::uniform_int_distribution<long long>(L, R)(rng);
 }
 
 uint32_t solve();
 
 int main() {
-   std::ios_base::sync_with_stdio(false);
-   std::cin.tie(0); std::cout.tie(0);
+  std::ios_base::sync_with_stdio(false);
+  std::cin.tie(0); std::cout.tie(0);
 
-   int num_test = 0;
-   std::cin >> num_test;
-   for(int nt = 0; nt < num_test; nt++) {
-   solve();
-   }
+  int num_test = 0;
+  std::cin >> num_test;
+  for(int nt = 0; nt < num_test; nt++) {
+  solve();
+  }
 }
 
 uint32_t solve() {
-   size_t n;
-   ll x, y;
-   std::cin >> n >> x >> y;
+  size_t n;
+  ll x, y;
+  std::cin >> n >> x >> y;
 
-   std::vector<ll> perm(n);
+  std::vector<ll> perm(n);
 
-   for(size_t i {0}; i < n; i++) {
-   std::cin >> perm[i];
-   }
+  for(size_t i {0}; i < n; i++) {
+  std::cin >> perm[i];
+  }
 
-   ll g = std::gcd(x, y);
+  ll g = std::gcd(x, y);
 
-   // benzout: there exists a, b such that a * x + b * y = multiples of g;
-   // check if they are in the same residue class;
+  // benzout: there exists a, b such that a * x + b * y = multiples of g;
+  // check if they are in the same residue class;
 
-   for(size_t i = 0; i < n; i++) {
-   int rem = (i+1) % g;
-   if (rem != perm[i] % g) {
-      std::cout << "NO \n";
-      return 0;
-   }
-   }
-   std::cout << "YES \n";
+  for(size_t i = 0; i < n; i++) {
+  int rem = (i+1) % g;
+  if (rem != perm[i] % g) {
+    std::cout << "NO \n";
+    return 0;
+  }
+  }
+  std::cout << "YES \n";
 }

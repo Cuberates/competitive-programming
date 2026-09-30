@@ -77,7 +77,7 @@
 /**@attention: Random generator stolen from a random person */
 std::mt19937 rng(std::chrono::steady_clock::now().time_since_epoch().count());
 int64_t rand(long long L, long long R){
-   return std::uniform_int_distribution<long long>(L, R)(rng);
+  return std::uniform_int_distribution<long long>(L, R)(rng);
 }
 
 using i32 = int32_t;
@@ -90,37 +90,37 @@ using u64 = uint64_t;
 void solve();
 
 int main() {
-   std::ios_base::sync_with_stdio(false);
-   std::cin.tie(0); std::cout.tie(0);
+  std::ios_base::sync_with_stdio(false);
+  std::cin.tie(0); std::cout.tie(0);
 
-   int num_test = 0;
-   std::cin >> num_test;
-   for(int nt = 0; nt < num_test; nt++) {
-   solve();
-   }
+  int num_test = 0;
+  std::cin >> num_test;
+  for(int nt = 0; nt < num_test; nt++) {
+  solve();
+  }
 }
 
 void solve() {
-   i32 n;
-   std::string s;
-   std::cin >> n >> s;
+  i32 n;
+  std::string s;
+  std::cin >> n >> s;
 
-   u32 zeros = std::count(all(s), '0');
+  u32 zeros = std::count(all(s), '0');
 
-   if (!zeros || zeros == n) std::cout << 0 << "\n";
-   else if (s[0] == '1') std::cout << zeros << "\n";
-   else {
-   u32 ones { 0 };
-   u32 ans { std::numeric_limits<u32>::max() };
+  if (!zeros || zeros == n) std::cout << 0 << "\n";
+  else if (s[0] == '1') std::cout << zeros << "\n";
+  else {
+  u32 ones { 0 };
+  u32 ans { std::numeric_limits<u32>::max() };
 
-   for (size_t mid {0}; mid < s.length(); mid++) {
-      ones += (s[mid] == '1');
-      zeros -= (s[mid] == '0');
-      u32 total_cost = ones + zeros;
+  for (size_t mid {0}; mid < s.length(); mid++) {
+    ones += (s[mid] == '1');
+    zeros -= (s[mid] == '0');
+    u32 total_cost = ones + zeros;
 
-      ans = std::min(total_cost, ans);
-   }
+    ans = std::min(total_cost, ans);
+  }
 
-   std::cout << ans << "\n";
-   }
+  std::cout << ans << "\n";
+  }
 }

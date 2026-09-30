@@ -84,68 +84,68 @@
 */
 
 namespace Cuberates {
-   template<typename T, std::enable_if_t<std::is_arithmetic_v<T>, int> = 0>
-   void print(const T& numerical) { std::cerr << numerical; }
+  template<typename T, std::enable_if_t<std::is_arithmetic_v<T>, int> = 0>
+  void print(const T& numerical) { std::cerr << numerical; }
 
-   inline void print(const std::string& text) { std::cerr << text; }
+  inline void print(const std::string& text) { std::cerr << text; }
 
-   template<typename K, typename V>
-   void print(const std::pair<K, V>& value) {
-   std::cerr << '(';
-   print(value.first);
-   std::cerr << ", ";
-   print(value.second);
-   std::cerr << ')';
-   }
+  template<typename K, typename V>
+  void print(const std::pair<K, V>& value) {
+  std::cerr << '(';
+  print(value.first);
+  std::cerr << ", ";
+  print(value.second);
+  std::cerr << ')';
+  }
 
-   template<typename T, typename Allocator>
-   void print(const std::vector<T, Allocator>& values);
+  template<typename T, typename Allocator>
+  void print(const std::vector<T, Allocator>& values);
 
-   template<typename T, typename Allocator>
-   void print(const std::vector<T, Allocator>& values) {
-   std::cerr << '[';
-   bool first = true;
-   for (const auto& value : values) {
-      if (!first) std::cerr << ", ";
-      print(value);
-      first = false;
-   }
-   std::cerr << ']';
-   }
+  template<typename T, typename Allocator>
+  void print(const std::vector<T, Allocator>& values) {
+  std::cerr << '[';
+  bool first = true;
+  for (const auto& value : values) {
+    if (!first) std::cerr << ", ";
+    print(value);
+    first = false;
+  }
+  std::cerr << ']';
+  }
 
-   template<typename T, typename Container>
-   void print(std::stack<T, Container> values) {
-   std::cerr << '[';
-   bool first = true;
-   while (!values.empty()) {
-      if (!first) std::cerr << ", ";
-      print(values.top());
-      values.pop();
-      first = false;
-   }
-   std::cerr << ']';
-   }
+  template<typename T, typename Container>
+  void print(std::stack<T, Container> values) {
+  std::cerr << '[';
+  bool first = true;
+  while (!values.empty()) {
+    if (!first) std::cerr << ", ";
+    print(values.top());
+    values.pop();
+    first = false;
+  }
+  std::cerr << ']';
+  }
 
-   template<typename T, typename Container, typename Compare>
-   void print(std::priority_queue<T, Container, Compare> values) {
-   std::cerr << '[';
-   bool first = true;
-   while (!values.empty()) {
-      if (!first) std::cerr << ", ";
-      print(values.top());
-      values.pop();
-      first = false;
-   }
-   std::cerr << ']';
-   }
+  template<typename T, typename Container, typename Compare>
+  void print(std::priority_queue<T, Container, Compare> values) {
+  std::cerr << '[';
+  bool first = true;
+  while (!values.empty()) {
+    if (!first) std::cerr << ", ";
+    print(values.top());
+    values.pop();
+    first = false;
+  }
+  std::cerr << ']';
+  }
 
 };
 
 #define debug(v)                       \
-   do {                                 \
-   std::cerr << #v << " = ";          \
-   Cuberates::print(v);               \
-   std::cerr << '\n';                 \
-   } while (false)
+  do {                                 \
+  std::cerr << #v << " = ";          \
+  Cuberates::print(v);               \
+  std::cerr << '\n';                 \
+  } while (false)
 
 #endif

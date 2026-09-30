@@ -76,25 +76,25 @@
 using namespace std;
 
 int main(void) {
-   ios_base::sync_with_stdio(0);
-   cin.tie(0); cout.tie(0);
+  ios_base::sync_with_stdio(0);
+  cin.tie(0); cout.tie(0);
 
-   int num_test;
-   cin >> num_test;
-   vector<int> ans(num_test);
-   for(int tt = 0; tt < num_test; tt++) {
-   string element, abriv;
-   cin >> element >> abriv;
-   set<int> letters_in_element;
-   for(int i = 0; i < element.length(); i++) {
-      letters_in_element.insert(element[i]);
-   }
-   bool good = true;
-   for(int i = 0; i < abriv.length(); i++) {
-      if (!letters_in_element.count(abriv[i])) good = false;
-   }
-   ans[tt] = good;
-   }
-   for(int i = 0; i < num_test; i++)
-   cout << (ans[i] ? "YES" : "NO") << "\n";
+  int num_test;
+  cin >> num_test;
+  vector<int> ans(num_test);
+  for(int tt = 0; tt < num_test; tt++) {
+  string element, abriv;
+  cin >> element >> abriv;
+  set<int> letters_in_element;
+  for(int i = 0; i < element.length(); i++) {
+    letters_in_element.insert(element[i]);
+  }
+  bool good = true;
+  for(int i = 0; i < abriv.length(); i++) {
+    if (!letters_in_element.count(abriv[i])) good = false;
+  }
+  ans[tt] = good;
+  }
+  for(int i = 0; i < num_test; i++)
+  cout << (ans[i] ? "YES" : "NO") << "\n";
 }

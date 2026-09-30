@@ -81,55 +81,55 @@ using ll = long long;
 /**@attention: Random generator stolen from a random person */
 std::mt19937 rng(std::chrono::steady_clock::now().time_since_epoch().count());
 long long rand(long long L, long long R){
-   return std::uniform_int_distribution<long long>(L, R)(rng);
+  return std::uniform_int_distribution<long long>(L, R)(rng);
 }
 
 void solve();
 
 int main() {
-   std::ios_base::sync_with_stdio(false);
-   std::cin.tie(0); std::cout.tie(0);
+  std::ios_base::sync_with_stdio(false);
+  std::cin.tie(0); std::cout.tie(0);
 
-   int num_test = 0;
-   std::cin >> num_test;
-   for(int nt = 0; nt < num_test; nt++) {
-   solve();
-   }
+  int num_test = 0;
+  std::cin >> num_test;
+  for(int nt = 0; nt < num_test; nt++) {
+  solve();
+  }
 }
 void solve() {
-   int n;
-   std::cin >> n;
+  int n;
+  std::cin >> n;
 
-   std::vector<std::vector<int> > points(n+1, std::vector<int>(2, 0));
-
-
-   ll ans = 0;
-
-   for(int i = 0; i < n; i++) {
-   ll x, y;
-   std::cin >> x >> y;
-   points[x][y] = 1;
-   }
-
-   for(int x = 0; x <= n; x++) {
-   for(int y = 0; y < 2; y++) {
-      if (points[x][y] == 1) {
-         if (y && points[x][0]) ans = ans + n - 2;
-         else if (!y && points[x][1]) ans = ans + n - 2;
-      }
-   }
-   }
-   ans /= 2;
-
-   for(int x = 0; x <= n; x++) {
-   if (points[x][1] && x-1 >= 0 && x+1 <= n && points[x-1][0] && points[x+1][0]) ans++;
-   }
-   for(int x = 0; x <= n; x++) {
-   if (points[x][0] && x-1 >= 0 && x+1 <= n && points[x-1][1] && points[x+1][1]) ans++;
-   }
+  std::vector<std::vector<int> > points(n+1, std::vector<int>(2, 0));
 
 
-   std::cout << ans << "\n";
+  ll ans = 0;
+
+  for(int i = 0; i < n; i++) {
+  ll x, y;
+  std::cin >> x >> y;
+  points[x][y] = 1;
+  }
+
+  for(int x = 0; x <= n; x++) {
+  for(int y = 0; y < 2; y++) {
+    if (points[x][y] == 1) {
+      if (y && points[x][0]) ans = ans + n - 2;
+      else if (!y && points[x][1]) ans = ans + n - 2;
+    }
+  }
+  }
+  ans /= 2;
+
+  for(int x = 0; x <= n; x++) {
+  if (points[x][1] && x-1 >= 0 && x+1 <= n && points[x-1][0] && points[x+1][0]) ans++;
+  }
+  for(int x = 0; x <= n; x++) {
+  if (points[x][0] && x-1 >= 0 && x+1 <= n && points[x-1][1] && points[x+1][1]) ans++;
+  }
+
+
+  std::cout << ans << "\n";
 
 }
 /**

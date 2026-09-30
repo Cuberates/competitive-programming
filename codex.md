@@ -10,7 +10,7 @@ This repository is a competitive programming archive. It contains solutions and 
 - Prefer focused changes. Do not reformat or rewrite unrelated archived solutions.
 - Preserve problem-specific input/output behavior and any useful notes or comments in existing solutions.
 - Before adding a new solution, inspect nearby files for the expected structure and compiler conventions.
-- Solutions are 3-space tab (refactor accordingly)
+- Use two-space indentation for solution files.
 
 ## Build and cleanup
 

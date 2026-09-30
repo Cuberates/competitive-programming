@@ -80,17 +80,17 @@ using i64 = int64_t;
 using u64 = uint64_t;
 
 namespace Cuberates {
-   #define debug(v) std::cout << #v << ": "; Cuberates::_debug(v); std::cout << '\n';
-   #define SPACE std::cout << ' ';
-   #define NEXTLINE std::cout << '\n';
-   template<typename T>
-   void _debug(const T& t) { std::cout << t; }
-   template<typename T, typename V>
-   void _debug(const std::pair<T, V>& ptv) { _debug(ptv.first); SPACE; _debug(ptv.second);}
-   template<typename T>
-   void _debug(const std::vector<T>& vt) { for (const auto &v : vt) { _debug(v); SPACE; } }
-   template<typename T, typename V>
-   void _debug(const std::vector<std::pair<T, V>>& vptv) { for (const auto &ptv : vptv) { _debug(ptv); NEXTLINE; }}
+  #define debug(v) std::cout << #v << ": "; Cuberates::_debug(v); std::cout << '\n';
+  #define SPACE std::cout << ' ';
+  #define NEXTLINE std::cout << '\n';
+  template<typename T>
+  void _debug(const T& t) { std::cout << t; }
+  template<typename T, typename V>
+  void _debug(const std::pair<T, V>& ptv) { _debug(ptv.first); SPACE; _debug(ptv.second);}
+  template<typename T>
+  void _debug(const std::vector<T>& vt) { for (const auto &v : vt) { _debug(v); SPACE; } }
+  template<typename T, typename V>
+  void _debug(const std::vector<std::pair<T, V>>& vptv) { for (const auto &ptv : vptv) { _debug(ptv); NEXTLINE; }}
 };
 
 #define all(v) (v).begin(), (v).end()
@@ -106,35 +106,35 @@ T rand(T L, T R){ return std::uniform_real_distribution<T>(L, R)(rng); }
 void solve();
 
 int main() {
-   std::ios_base::sync_with_stdio(false);
-   std::cin.tie(0); std::cout.tie(0);
+  std::ios_base::sync_with_stdio(false);
+  std::cin.tie(0); std::cout.tie(0);
 
-   int num_test = 0;
-   std::cin >> num_test;
-   for(int nt = 0; nt < num_test; nt++) {
-   solve();
-   }
+  int num_test = 0;
+  std::cin >> num_test;
+  for(int nt = 0; nt < num_test; nt++) {
+  solve();
+  }
 }
 
 void solve() {
-   i64 n;
-   std::cin >> n;
+  i64 n;
+  std::cin >> n;
 
-   std::unordered_map<i64, i64> cnt;
+  std::unordered_map<i64, i64> cnt;
 
-   for (i64 i = 0; i < n; i++) {
-   i64 x;
-   std::cin >> x;
-   cnt[x]++;
-   }
-   for (i64 i = 101; i >= 0; i--) {
-   for (i64 j = 100; j >= 1; j--) {
-      if (cnt[j] > 0) {
-         std::cout << j << ' ';
-         cnt[j]--;
-      }
-   }
-   }
+  for (i64 i = 0; i < n; i++) {
+  i64 x;
+  std::cin >> x;
+  cnt[x]++;
+  }
+  for (i64 i = 101; i >= 0; i--) {
+  for (i64 j = 100; j >= 1; j--) {
+    if (cnt[j] > 0) {
+      std::cout << j << ' ';
+      cnt[j]--;
+    }
+  }
+  }
 
-   std::cout << '\n';
+  std::cout << '\n';
 }

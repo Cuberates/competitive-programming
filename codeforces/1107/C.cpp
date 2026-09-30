@@ -77,37 +77,37 @@
 /**@attention: Random generator stolen from a random person */
 std::mt19937 rng(std::chrono::steady_clock::now().time_since_epoch().count());
 long long rand(long long L, long long R){
-   return std::uniform_int_distribution<long long>(L, R)(rng);
+  return std::uniform_int_distribution<long long>(L, R)(rng);
 }
 
 void solve();
 int main() {
-   std::ios_base::sync_with_stdio(false);
-   std::cin.tie(0); std::cout.tie(0);
+  std::ios_base::sync_with_stdio(false);
+  std::cin.tie(0); std::cout.tie(0);
 
-   int num_test = 0;
-   std::cin >> num_test;
-   for(int nt = 0; nt < num_test; nt++) {
-   solve();
-   }
+  int num_test = 0;
+  std::cin >> num_test;
+  for(int nt = 0; nt < num_test; nt++) {
+  solve();
+  }
 }
 
 void solve() {
-   int n;
-   std::string s;
-   std::cin >> n >> s;
+  int n;
+  std::string s;
+  std::cin >> n >> s;
 
-   int cnt = 0; // counting alternations
-   for(int i = 0; i < n; i++) {
-   if (i > 0 && s[i] != s[i-1]) cnt++;
-   }
+  int cnt = 0; // counting alternations
+  for(int i = 0; i < n; i++) {
+  if (i > 0 && s[i] != s[i-1]) cnt++;
+  }
 
-   int ans;
-   if (cnt == 0) ans = 1;
-   else if (cnt == 1) ans = 2;
-   else ans = 1;
+  int ans;
+  if (cnt == 0) ans = 1;
+  else if (cnt == 1) ans = 2;
+  else ans = 1;
 
-   std::cout << ans << "\n";
+  std::cout << ans << "\n";
 }
 
 /*

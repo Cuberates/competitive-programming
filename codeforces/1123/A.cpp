@@ -80,17 +80,17 @@ using i64 = int64_t;
 using u64 = uint64_t;
 
 namespace Cuberates {
-   #define debug(v) std::cout << #v << ": "; Cuberates::_debug(v); std::cout << '\n';
-   #define SPACE std::cout << ' ';
-   #define NEXTLINE std::cout << '\n';
-   template<typename T>
-   void _debug(const T& t) { std::cout << t; }
-   template<typename T, typename V>
-   void _debug(const std::pair<T, V>& ptv) { _debug(ptv.first); SPACE; _debug(ptv.second);}
-   template<typename T>
-   void _debug(const std::vector<T>& vt) { for (const auto &v : vt) { _debug(v); SPACE; } }
-   template<typename T, typename V>
-   void _debug(const std::vector<std::pair<T, V>>& vptv) { for (const auto &ptv : vptv) { _debug(ptv); NEXTLINE; }}
+  #define debug(v) std::cout << #v << ": "; Cuberates::_debug(v); std::cout << '\n';
+  #define SPACE std::cout << ' ';
+  #define NEXTLINE std::cout << '\n';
+  template<typename T>
+  void _debug(const T& t) { std::cout << t; }
+  template<typename T, typename V>
+  void _debug(const std::pair<T, V>& ptv) { _debug(ptv.first); SPACE; _debug(ptv.second);}
+  template<typename T>
+  void _debug(const std::vector<T>& vt) { for (const auto &v : vt) { _debug(v); SPACE; } }
+  template<typename T, typename V>
+  void _debug(const std::vector<std::pair<T, V>>& vptv) { for (const auto &ptv : vptv) { _debug(ptv); NEXTLINE; }}
 };
 
 #define all(v) (v).begin(), (v).end()
@@ -106,33 +106,33 @@ T rand(T L, T R){ return std::uniform_real_distribution<T>(L, R)(rng); }
 void solve();
 
 int main() {
-   std::ios_base::sync_with_stdio(false);
-   std::cin.tie(0); std::cout.tie(0);
+  std::ios_base::sync_with_stdio(false);
+  std::cin.tie(0); std::cout.tie(0);
 
-   int num_test = 0;
-   std::cin >> num_test;
-   for(int nt = 0; nt < num_test; nt++) {
-   solve();
-   }
+  int num_test = 0;
+  std::cin >> num_test;
+  for(int nt = 0; nt < num_test; nt++) {
+  solve();
+  }
 }
 
 void solve() {
-   i64 n;
-   char c;
-   std::string s;
-   std::cin >> n >> c >> s;
+  i64 n;
+  char c;
+  std::string s;
+  std::cin >> n >> c >> s;
 
-   i64 ans = 0;
+  i64 ans = 0;
 
-   for (i64 i = 0; i < n; i++) {
-   if (i < n-i-1) {
-      if (s[i] == s[n-i-1]) continue;
-      if (s[i] != s[n-i-1]) {
-         if (s[i] != c && s[n-i-1] != c) ans += 2;
-         else ans++;
-      }
-   }
-   }
+  for (i64 i = 0; i < n; i++) {
+  if (i < n-i-1) {
+    if (s[i] == s[n-i-1]) continue;
+    if (s[i] != s[n-i-1]) {
+      if (s[i] != c && s[n-i-1] != c) ans += 2;
+      else ans++;
+    }
+  }
+  }
 
-   std::cout << ans << "\n";
+  std::cout << ans << "\n";
 }

@@ -76,36 +76,36 @@
 void solve();
 
 int main() {
-   std::ios_base::sync_with_stdio(false);
-   std::cin.tie(0); std::cout.tie(0);
+  std::ios_base::sync_with_stdio(false);
+  std::cin.tie(0); std::cout.tie(0);
 
-   int num_test = 0;
-   std::cin >> num_test;
-   for(int nt = 0; nt < num_test; nt++) {
-   solve();
-   }
+  int num_test = 0;
+  std::cin >> num_test;
+  for(int nt = 0; nt < num_test; nt++) {
+  solve();
+  }
 }
 
 void solve() {
-   int n; std::cin >> n;
-   std::vector<int> p(n);
-   for(int i = 0; i < n; i++)
-   std::cin >> p[i];
+  int n; std::cin >> n;
+  std::vector<int> p(n);
+  for(int i = 0; i < n; i++)
+  std::cin >> p[i];
 
-   std::vector<int> sorted_p = p;
-   std::sort(sorted_p.begin(), sorted_p.end(), std::greater<int>());
+  std::vector<int> sorted_p = p;
+  std::sort(sorted_p.begin(), sorted_p.end(), std::greater<int>());
 
-   for(int i = 0; i < n; i++) {
-   if (sorted_p[i] != p[i]) {
-      int pivot;
-      for (pivot=i+1; pivot < n && p[pivot] != sorted_p[i]; pivot++);
-      std::reverse(p.begin()+i, p.end()-(n-(pivot+1)));
-      break;
-   } else continue;
-   }
+  for(int i = 0; i < n; i++) {
+  if (sorted_p[i] != p[i]) {
+    int pivot;
+    for (pivot=i+1; pivot < n && p[pivot] != sorted_p[i]; pivot++);
+    std::reverse(p.begin()+i, p.end()-(n-(pivot+1)));
+    break;
+  } else continue;
+  }
 
-   for(int i = 0; i < n; i++) {
-   std::cout << p[i] << " ";
-   }
-   std::cout << "\n";
+  for(int i = 0; i < n; i++) {
+  std::cout << p[i] << " ";
+  }
+  std::cout << "\n";
 }

@@ -81,34 +81,34 @@ using ll = long long;
 /**@attention: Random generator stolen from a random person */
 std::mt19937 rng(std::chrono::steady_clock::now().time_since_epoch().count());
 long long rand(long long L, long long R){
-   return std::uniform_int_distribution<long long>(L, R)(rng);
+  return std::uniform_int_distribution<long long>(L, R)(rng);
 }
 
 uint32_t solve();
 
 int main() {
-   std::ios_base::sync_with_stdio(false);
-   std::cin.tie(0); std::cout.tie(0);
+  std::ios_base::sync_with_stdio(false);
+  std::cin.tie(0); std::cout.tie(0);
 
-   int num_test = 0;
-   std::cin >> num_test;
-   for(int nt = 0; nt < num_test; nt++) {
-   solve();
-   }
+  int num_test = 0;
+  std::cin >> num_test;
+  for(int nt = 0; nt < num_test; nt++) {
+  solve();
+  }
 }
 
 uint32_t solve() {
-   int n;
-   std::cin >> n;
-   std::vector<ll> v(n);
-   ll curr_sum = 0;
-   int good = true;
-   for(ll i = 0; i < n; i++) {
-   std::cin >> v[i];
-   curr_sum += v[i];
-   if (curr_sum < (ll)((i+1)*(i+2)/2)) good = false;
-   else continue;
-   }
-   std::cout << (good ? "YES":"NO") << "\n";
-   // ll big = (2e5)*(2e5+1)/2; std::cout << big << "\n";
+  int n;
+  std::cin >> n;
+  std::vector<ll> v(n);
+  ll curr_sum = 0;
+  int good = true;
+  for(ll i = 0; i < n; i++) {
+  std::cin >> v[i];
+  curr_sum += v[i];
+  if (curr_sum < (ll)((i+1)*(i+2)/2)) good = false;
+  else continue;
+  }
+  std::cout << (good ? "YES":"NO") << "\n";
+  // ll big = (2e5)*(2e5+1)/2; std::cout << big << "\n";
 }

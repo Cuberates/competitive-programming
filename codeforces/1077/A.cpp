@@ -77,18 +77,18 @@
 void solve();
 
 int main(void) {
-   std::ios_base::sync_with_stdio(false);
-   std::cin.tie(0); std::cout.tie(0);
+  std::ios_base::sync_with_stdio(false);
+  std::cin.tie(0); std::cout.tie(0);
 
-   uint32_t num_test = 0;
-   std::cin >> num_test;
-   for(uint32_t nt = 0; nt < num_test; nt++) {
-   solve();
-   }
+  uint32_t num_test = 0;
+  std::cin >> num_test;
+  for(uint32_t nt = 0; nt < num_test; nt++) {
+  solve();
+  }
 }
 
 void solve() {
-   int n;
-   std::cin >> n;
+  int n;
+  std::cin >> n;
 
 }

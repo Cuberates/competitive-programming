@@ -78,42 +78,42 @@
 void solve();
 
 int main() {
-   std::ios_base::sync_with_stdio(false);
-   std::cin.tie(0); std::cout.tie(0);
+  std::ios_base::sync_with_stdio(false);
+  std::cin.tie(0); std::cout.tie(0);
 
-   int num_test = 0;
-   std::cin >> num_test;
-   for(int nt = 0; nt < num_test; nt++) {
-   solve();
-   }
+  int num_test = 0;
+  std::cin >> num_test;
+  for(int nt = 0; nt < num_test; nt++) {
+  solve();
+  }
 }
 
 void solve() {
-   int n; std::cin >> n;
-   std::vector<int> a(n);
-   for(int i = 0; i < n; i++) {
-      std::cin >> a[i];
-   }
-   std::map<int,int> used;
-   for(int i = 0; i < n; i++) {
-      if (used[i]) continue;
-      std::vector<int> b;
-      for(int nxt = i; nxt < n; nxt = nxt*2) {
-         b.push_back(a[nxt]);
-      }
+  int n; std::cin >> n;
+  std::vector<int> a(n);
+  for(int i = 0; i < n; i++) {
+    std::cin >> a[i];
+  }
+  std::map<int,int> used;
+  for(int i = 0; i < n; i++) {
+    if (used[i]) continue;
+    std::vector<int> b;
+    for(int nxt = i; nxt < n; nxt = nxt*2) {
+      b.push_back(a[nxt]);
+    }
 
-      std::sort(b.begin(), b.end());
-      int in = 0;
-      for(int nxt = i; nxt < n; nxt = nxt*2) {
-         a[nxt] = b[in];
-         in++;
-      }
-   }
-   bool sorted = true;
-   for(int i = 0; i < n; i++) {
-      if (i > 0 && a[i] < a[i-1]) {
-         sorted = false;
-      }
-   }
-   std::cout << (sorted ? "YES" : "NO") << "\n";
+    std::sort(b.begin(), b.end());
+    int in = 0;
+    for(int nxt = i; nxt < n; nxt = nxt*2) {
+      a[nxt] = b[in];
+      in++;
+    }
+  }
+  bool sorted = true;
+  for(int i = 0; i < n; i++) {
+    if (i > 0 && a[i] < a[i-1]) {
+      sorted = false;
+    }
+  }
+  std::cout << (sorted ? "YES" : "NO") << "\n";
 }

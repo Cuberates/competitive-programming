@@ -81,37 +81,37 @@ using ll = long long;
 /**@attention: Random generator stolen from a random person */
 std::mt19937 rng(std::chrono::steady_clock::now().time_since_epoch().count());
 long long rand(long long L, long long R){
-   return std::uniform_int_distribution<long long>(L, R)(rng);
+  return std::uniform_int_distribution<long long>(L, R)(rng);
 }
 
 uint32_t solve();
 
 int main() {
-   std::ios_base::sync_with_stdio(false);
-   std::cin.tie(0); std::cout.tie(0);
+  std::ios_base::sync_with_stdio(false);
+  std::cin.tie(0); std::cout.tie(0);
 
-   int num_test = 0;
-   std::cin >> num_test;
-   for(int nt = 0; nt < num_test; nt++) {
-   solve();
-   }
+  int num_test = 0;
+  std::cin >> num_test;
+  for(int nt = 0; nt < num_test; nt++) {
+  solve();
+  }
 }
 
 uint32_t solve() {
-   int n;
-   std::string s;
-   std::cin >> n >> s;
-   int max_cnt = -1;
-   int cnt = 0;
-   for(int i = 0; i < n; i++) {
-   if (s[i] == '*') {
-      // std::cout << "cnt: " << cnt << "\n";
-      max_cnt = std::max(max_cnt, cnt / 2 + (cnt % 2 != 0));
-      cnt = 0;
-   } else cnt++;
-   }
-   // std::cout << "cnt: " << cnt << "\n";
-   max_cnt = std::max(max_cnt, cnt /2 + (cnt % 2 != 0));
-   // int ans = max_cnt / 2;
-   std::cout << max_cnt << "\n";
+  int n;
+  std::string s;
+  std::cin >> n >> s;
+  int max_cnt = -1;
+  int cnt = 0;
+  for(int i = 0; i < n; i++) {
+  if (s[i] == '*') {
+    // std::cout << "cnt: " << cnt << "\n";
+    max_cnt = std::max(max_cnt, cnt / 2 + (cnt % 2 != 0));
+    cnt = 0;
+  } else cnt++;
+  }
+  // std::cout << "cnt: " << cnt << "\n";
+  max_cnt = std::max(max_cnt, cnt /2 + (cnt % 2 != 0));
+  // int ans = max_cnt / 2;
+  std::cout << max_cnt << "\n";
 }

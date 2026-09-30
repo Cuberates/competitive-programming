@@ -77,44 +77,44 @@
 void solve();
 
 int main(void) {
-   std::ios_base::sync_with_stdio(false);
-   std::cin.tie(0); std::cout.tie(0);
+  std::ios_base::sync_with_stdio(false);
+  std::cin.tie(0); std::cout.tie(0);
 
-   uint32_t num_test = 0;
-   std::cin >> num_test;
-   for(uint32_t nt = 0; nt < num_test; nt++) {
-   solve();
-   }
+  uint32_t num_test = 0;
+  std::cin >> num_test;
+  for(uint32_t nt = 0; nt < num_test; nt++) {
+  solve();
+  }
 }
 
 void solve() {
-   uint32_t n;
-   std::cin >> n;
-   std::vector<uint32_t> a(n);
-   for(uint32_t i = 0; i < n; i++)
-   std::cin >> a[i];
+  uint32_t n;
+  std::cin >> n;
+  std::vector<uint32_t> a(n);
+  for(uint32_t i = 0; i < n; i++)
+  std::cin >> a[i];
 
-   bool is_sorted = true;
-   for(uint32_t i = 0; i < n && is_sorted; i++)
-   if (i < n-1 && a[i] > a[i+1])
-      is_sorted = false;
+  bool is_sorted = true;
+  for(uint32_t i = 0; i < n && is_sorted; i++)
+  if (i < n-1 && a[i] > a[i+1])
+    is_sorted = false;
 
-   if (is_sorted) {
-   std::cout << "-1\n";
-   }
-   else {
-   const uint32_t &mn = *std::min_element(a.begin(), a.end());
-   const uint32_t &mx = *std::max_element(a.begin(), a.end());
+  if (is_sorted) {
+  std::cout << "-1\n";
+  }
+  else {
+  const uint32_t &mn = *std::min_element(a.begin(), a.end());
+  const uint32_t &mx = *std::max_element(a.begin(), a.end());
 
-   std::vector<uint32_t> b = a;
-   std::sort(b.begin(), b.end());
+  std::vector<uint32_t> b = a;
+  std::sort(b.begin(), b.end());
 
-   long long min_k = 1e9+1;
-   for(uint32_t i = 0; i < n; i++) {
-      if (b[i] == a[i]) continue;
-      long long max_diff = std::max((long long)a[i]-mn, (long long)mx-a[i]);
-      min_k = std::min(min_k, max_diff);
-   }
-   std::cout << min_k << "\n";
-   }
+  long long min_k = 1e9+1;
+  for(uint32_t i = 0; i < n; i++) {
+    if (b[i] == a[i]) continue;
+    long long max_diff = std::max((long long)a[i]-mn, (long long)mx-a[i]);
+    min_k = std::min(min_k, max_diff);
+  }
+  std::cout << min_k << "\n";
+  }
 }

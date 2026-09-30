@@ -77,39 +77,39 @@
 /**@attention: Random generator stolen from a random person */
 std::mt19937 rng(std::chrono::steady_clock::now().time_since_epoch().count());
 long long rand(long long L, long long R){
-   return std::uniform_int_distribution<long long>(L, R)(rng);
+  return std::uniform_int_distribution<long long>(L, R)(rng);
 }
 
 void solve();
 int main() {
-   std::ios_base::sync_with_stdio(false);
-   std::cin.tie(0); std::cout.tie(0);
+  std::ios_base::sync_with_stdio(false);
+  std::cin.tie(0); std::cout.tie(0);
 
-   int num_test = 0;
-   std::cin >> num_test;
-   for(int nt = 0; nt < num_test; nt++) {
-   solve();
-   }
+  int num_test = 0;
+  std::cin >> num_test;
+  for(int nt = 0; nt < num_test; nt++) {
+  solve();
+  }
 }
 
 void solve() {
-   int n;
-   std::cin >> n;
-   std::vector<int64_t> v(n);
-   for(int i = 0; i < n; i++) {
-   std::cin >> v[i];
-   }
-   int64_t XOR = 0;
-   for(int i = 0; i < n; i++) {
-   XOR ^= v[i];
-   }
-   if (n <= 1) { std::cout << "0\n"; return; }
-   if (XOR == 0) {std::cout << "1\n"; return; }
+  int n;
+  std::cin >> n;
+  std::vector<int64_t> v(n);
+  for(int i = 0; i < n; i++) {
+  std::cin >> v[i];
+  }
+  int64_t XOR = 0;
+  for(int i = 0; i < n; i++) {
+  XOR ^= v[i];
+  }
+  if (n <= 1) { std::cout << "0\n"; return; }
+  if (XOR == 0) {std::cout << "1\n"; return; }
 
-   int64_t cnt = 0;
-   for(int i = 0; i < n; i++) {
-   cnt += ((v[i] ^ XOR) <= v[i]);
-   }
-   std::cout << cnt << '\n';
-   return;
+  int64_t cnt = 0;
+  for(int i = 0; i < n; i++) {
+  cnt += ((v[i] ^ XOR) <= v[i]);
+  }
+  std::cout << cnt << '\n';
+  return;
 }
