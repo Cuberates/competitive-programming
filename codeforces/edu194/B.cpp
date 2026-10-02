@@ -146,6 +146,8 @@ namespace Cuberates {
 
 
 #define all(v) (v).begin(), (v).end()
+#define rep(i, a ,b) for(i64 i = a; i <= b; i++) 
+#define rrep(i, a, b) for (i64 i = a; i >= b; i--)
 #define fi first
 #define se second
 
@@ -162,25 +164,27 @@ int main() {
   std::ios_base::sync_with_stdio(false);
   std::cin.tie(0); std::cout.tie(0);
 
-
   int num_test = 0;
   std::cin >> num_test;
   for(int nt = 0; nt < num_test; nt++) {
-  solve();
+    solve();
   }
 
 }
 
 void solve() { 
   i64 x, y, k; 
-  std::cin >> x >> y >> k;
+  std::cin >> x >> y >> k; 
 
-  i64 sumDivided= 0; 
-  for (i64 i = 0; i < k; i++) { 
-    sumDivided += static_cast<i64>((y+i)/(x+i)); 
+  i64 convPoint = std::max(0LL, y - (2*x));
+  i64 maxK = std::min(convPoint, k);
+
+  i64 ans = 0; 
+  for (i64 i = 0; i < maxK; i++) { 
+    ans += ((y + i) % (x + i)); 
   }
-
-  i64 ans = (k*y) - (k*(k-1)/2) - (sumDivided*x);
+  i64 remainingK = std::max(k - maxK - 1, 0LL); 
+  ans += ((y - x) * (remainingK));
 
   std::cout << ans << "\n";
 }
