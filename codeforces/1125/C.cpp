@@ -131,27 +131,32 @@ void solve() {
     std::cin >> v[i];
   }
 
-  std::unordered_map<i64, std::vector<i64>> triads; 
+  std::unordered_map<i64, std::vector<i64>> triads;
 
   for (i64 i = 0; i < n; i++) { 
-    if (i+4 < n) { triads[v[i] + v[i+2] - v[i+4]].push_back(i); }
+    if (i + 4 < n) { 
+      i64 score = v[i] + v[i+2] - v[i+4]; 
+      triads[score].push_back(i);
+    }
   }
-  
+
   i64 ans = 0; 
-
+  
   for (i64 i = 0; i < n; i++) { 
-    if (!(i+4 < n)) continue; 
-
-    i64 score = v[i] + v[i+2] - v[i+4]; 
-    i64 find = std::upper_bound(all(triads[score]), i) - triads[score].begin();
+    if (i + 4 < n) { 
+      // consider the triads starting at i 
+      i64 score = v[i] + v[i+2] - v[i+4];
+      i64 counts = triads[score].size() - (std::upper_bound(all(triads[score]), i+4) - triads[score].begin()); 
     
-    //   i64 triad = triads[score][j];
-    //   if (!(triad <= i || triad == i+2 || triad == i+4)) counts++; 
-    // }
+      // consider i + 1 and i + 3 respectively
+      i64 found1 = std::binary_search(all(triads[score]), i+1); 
+      counts += found1; 
 
-    // debug(counts);
+      i64 found2 = std::binary_search(all(triads[score]), i+3); 
+      counts += found2; 
+      ans += counts; 
+    }
+  }  
 
-  }
-
-  std::cout << ans << '\n';
+  std::cout << ans << "\n";
 }
