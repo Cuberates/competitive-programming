@@ -73,6 +73,7 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <thread>
+#include <bits/stdc++.h>
 
 using i32 = int32_t;
 using u32 = uint32_t;
@@ -146,10 +147,11 @@ void solve() {
 
   // groups[p] = all the elements that can be expressed in terms of p*k
   for (i64 i = 0; i < n; i++) {
-  std::cin >> a[i];
-  for (const i64 &pf : primeFactor[a[i]]) {
-    groups[pf].push_back(a[i]);
-  }
+    std::cin >> a[i];
+    for (const i64 &pf : primeFactor[a[i]]) {
+      groups[pf].push_back(a[i]);
+    }
+
   }
 
   i64 ans = 0;
@@ -158,11 +160,11 @@ void solve() {
   // For each prime factor pf of x
   // Calculate the sum of the elements in group[pf]
   for (const auto& pf : primeFactor[x]) {
-  sum = 0;
-  for (i64 i = 0; i < groups[pf].size(); i++) {
-    sum += groups[pf][i];
-  }
-  ans = std::max(ans, sum);
+    sum = 0;
+    for (i64 i = 0; i < groups[pf].size(); i++) {
+      sum += groups[pf][i];
+    }
+    ans = std::max(ans, sum);
   }
 
   std::cout << ans << "\n";

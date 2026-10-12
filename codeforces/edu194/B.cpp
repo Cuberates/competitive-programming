@@ -176,7 +176,7 @@ void solve() {
   i64 x, y, k; 
   std::cin >> x >> y >> k; 
 
-  i64 convPoint = std::max(0LL, y - (2*x));
+  i64 convPoint = std::max(-1LL, y - (2*x));
   i64 maxK = std::min(convPoint, k);
 
   i64 ans = 0; 
