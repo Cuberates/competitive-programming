@@ -155,8 +155,6 @@ T irand(T L, T R){ return std::uniform_int_distribution<T>(L, R)(rng); }
 template<typename T>
 T rand(T L, T R){ return std::uniform_real_distribution<T>(L, R)(rng); }
 
-
-
 #define all(v) (v).begin(), (v).end()
 
 void solve();
@@ -190,11 +188,11 @@ void solve() {
   i64 l = 0;
   i64 ans = -1;
   while (l < m) {
-  i64 r = l+1;
-  for (r = l+1; r < m && invariant[r] - invariant[r-1] == 1; r++);
-  i64 len = (r-l);
-  ans = std::max(ans, len);
-  l = r;
+    i64 r = l+1;
+    for (r = l+1; r < m && invariant[r] - invariant[r-1] == 1; r++);
+    i64 len = (r-l);
+    ans = std::max(ans, len);
+    l = r;
   }
   std::cout << ans << '\n';
 
