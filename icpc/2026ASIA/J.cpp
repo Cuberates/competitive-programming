@@ -122,8 +122,35 @@ int main() {
 }
 
 void solve() {
-  i64 x; 
-  std::cin >> x; 
+  u64 x; 
+  std::cin >> x;    
 
-  // Subtracting the two right most bits?
-}
+  auto diff = [&](u64 a, i64 b) -> u64 { 
+    // return std::abs(std::pow(2, a) + std::pow(2, b) - x);
+    u64 sum = (1ULL << a) + (1ULL << b); 
+    return sum >= x ? sum - x : x - sum; 
+  };
+
+  auto search = [&](u64 p) -> u64 { 
+    u64 lb = p, ub = 63; 
+    while (lb < ub) { 
+      u64 mid = lb + (ub - lb) / 2; 
+      u64 sum = (1ULL << p) + (1ULL << mid);
+
+      if (sum < x) lb = mid + 1; 
+      else ub = mid; 
+    }
+
+    u64 ans = diff(p, lb); 
+    if (lb > p) ans = std::min(ans, diff(p, lb - 1));
+    return ans; 
+  };
+  
+  u64 min_diff = x+1; 
+
+  for (i64 i = 0; i < 64; i++) { 
+    min_diff = std::min(min_diff, search(i));
+  }
+  
+  std::cout << min_diff << "\n";
+} 
