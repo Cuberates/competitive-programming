@@ -81,6 +81,10 @@ using u32 = uint32_t;
 using i64 = int64_t;
 using u64 = uint64_t;
 
+#define all(v) (v).begin() (v).end()
+#define fi first
+#define se second
+
 void solve();
 
 int main() {
@@ -99,14 +103,24 @@ void solve() {
 
   i64 n = s.length(); 
 
-  std::unordered_map<char, i64> freq; 
-  i64 dist = 0; 
-
+  std::map<char, i64> freq; 
   for (i64 i = 0; i < n; i++) { 
     freq[s[i]]++;
-    dist += (freq[s[i]] == 0);
   }
-  
-  
-  
-}
+
+  i64 min = 0; 
+  i64 odds = 0;
+  i64 dist = 0; 
+  for (char c = 'A'; c <= 'Z'; c++) { 
+    min += (freq[c] / 2); 
+    odds += (freq[c] % 2 != 0);
+    dist += (freq[c] > 0);
+  }
+
+  if (dist <= 1) { std::cout << "-1\n"; }
+  else { 
+    if (!odds) std::cout << min-1 << "\n";
+    else if (odds <= 1) std::cout << min << "\n";
+    else std::cout << min+1 << "\n";
+  }
+} 
