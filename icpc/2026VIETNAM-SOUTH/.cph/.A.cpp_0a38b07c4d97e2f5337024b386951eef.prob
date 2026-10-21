@@ -1,0 +1,1 @@
+{"name":"Local: A","url":"/Users/cookie/Desktop/COMPROG/icpc/2026VIETNAM-SOUTH/A.cpp","tests":[{"id":1792543696312,"input":"8 4 2 2 1 1\n5\n0\n1\n2\n3\n4","output":"2 2\n3 3\n4 4\n5 3\n6 2"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/Users/cookie/Desktop/COMPROG/icpc/2026VIETNAM-SOUTH/A.cpp","group":"local","local":true}

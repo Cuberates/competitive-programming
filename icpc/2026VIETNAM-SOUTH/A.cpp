@@ -96,52 +96,35 @@ int main() {
   }
 }
 
-i64 n, m, x, y, vx, vy, negx = false, negy = false; 
+i64 n, m, x, y, vx, vy, flippedX = false, flippedY = false; 
 i64 q, t;
 
-std::vector<std::pair<i64, i64>> ans;
+std::vector<std::pair<i64, i64>> ans;  
 
-i64 reflectX (i64 totalDist) { 
-  i64 r = ((totalDist % (2 * n)) + 2*n) % (2*n);
-  return r <= n ? r : 2*n - r; 
+void query() { 
+  i64 totalDistX = t * std::abs(vx) + x; 
+  i64 totalDistY = t * std::abs(vy) + y; 
+
+  i64 offsetX = totalDistX % n; 
+  i64 bouncesX = totalDistX / n;
+  i64 finalX = (bouncesX % 2 != 0 ? n - offsetX : offsetX); 
+  if (flippedX) finalX = n - finalX; 
+
+  i64 offsetY = totalDistY % m;
+  i64 bouncesY = totalDistY / m; 
+  i64 finalY = (bouncesY % 2 != 0 ? m - offsetY : offsetY);
+  if (flippedY) finalY = m - finalY;
+
+  std::cout << finalX+1 << " " << finalY+1 << "\n";
 }
-
-i64 reflectY (i64 totalDist) { 
-  i64 r = ((totalDist % (2 * m)) + 2*n) % (2*n); 
-  return r <= m ? r : 2*m - r;  
-}
-
-void query(i64 totalTime) { 
-  i64 totalDistX = totalTime * vx + x; 
-  i64 totalDistY = totalTime * vy + y;
-
-  i64 finalX = reflectX(totalDistX);
-  i64 finalY = reflectY(totalDistY);
-
-  if (negy) finalY = m - finalY; 
-  if (negx) finalX = n - finalX;
-  // std::cout << "(finalx, finaly): " << finalX << " " << finalY << "\n"; 
-  // std::cout << finalX << " " << finalY << "\n";
-  ans.push_back(std::make_pair(finalX, finalY));
-} 
 
 void solve() {
   std::cin >> n >> m >> x >> y >> vx >> vy >> q;
-  if (vx < 0) {
-    negx = true;  
-    vx = -vx; 
-    x = n-x; 
-  } 
-  if (vy < 0) {
-    negy = true;  
-    vy = -vy; 
-    y = n-y; 
-  }
-  FOR(i, 0, q) { 
-    std::cin >> t; 
-    query(t);
-  }
-  for(auto &a : ans) { 
-    std::cout << a.first << " " << a.second << '\n';
-  }
+  --n; --m; --x; --y; 
+  if (vx < 0) { x = n-x; flippedX = true; } 
+  if (vy < 0) { y = m-y; flippedY = true; }  
+  FOR(i, 0 , q) { 
+    std::cin >> t;
+    query();  
+  }  
 }   
