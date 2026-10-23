@@ -112,7 +112,6 @@ void solve() {
       }
     }
   }
-
   std::cout << choose.size() << "\n";
   for (i64 i = 0; i < choose.size(); i++) {
     std::cout << choose[i] << " "; 
