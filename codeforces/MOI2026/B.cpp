@@ -132,10 +132,10 @@ void solve() {
       else { pf[i][j] = *std::max_element(choices.begin(), choices.end()); }
     }
   }
+
   i64 ans = std::numeric_limits<i64>::min(); 
   for(i64 i = 1; i <= n; i++) { 
     ans = std::max(ans, pf[i][1]); 
   }
   std::cout << ans << "\n";
 }
-
