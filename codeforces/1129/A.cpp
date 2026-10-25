@@ -127,4 +127,7 @@ void solve() {
     } else break; 
   }
   std::cout << currMex << "\n";
+
+
+
 }
