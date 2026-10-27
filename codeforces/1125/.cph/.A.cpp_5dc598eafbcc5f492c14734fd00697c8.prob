@@ -1,0 +1,1 @@
+{"name":"Local: A","url":"/Users/cookie/Desktop/COMPROG/codeforces/1125/A.cpp","tests":[{"id":1793064036881,"input":"3\n0 0 1\n5 5 5\n10 10 13","output":"0 1\n2 1\n-2 5"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/Users/cookie/Desktop/COMPROG/codeforces/1125/A.cpp","group":"local","local":true}

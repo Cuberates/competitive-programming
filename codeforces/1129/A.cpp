@@ -120,7 +120,6 @@ void solve() {
   i64 extra = 0; 
 
   for (i64 i = 0; i <= 100; i++) {
-    // std::cout << "(i, extra, currMex): " << i << " " << extra << " " << currMex << "\n";
     if (cnt[i] > 0 &&   extra + cnt[i] >= k) { 
       extra += (cnt[i] - k); 
       currMex++;

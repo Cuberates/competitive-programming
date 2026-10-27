@@ -1,4 +1,4 @@
-#include <random>
+  #include <random>
 #include <cassert>
 #include <cctype>
 #include <cerrno>
@@ -104,82 +104,57 @@ void debug(i64 &&v) {
   std::cout << v << " "; 
 }
 
-struct Graph { 
-  std::map<i64, std::vector<i64>> g; // g[u][v] contains connection 
-  size_t n; 
-  Graph (size_t numNodes) : n {numNodes} {};  
-  void add(i64 u, i64 v) { g[u].push_back(v); g[v].push_back(u); };
-  void dfs(i64 root, i64 depth);
-  void dijkstra(i64 root);
-}; 
+using Graph = std::map<i64, std::vector<i64>>; 
 
-const i64 inf = std::numeric_limits<i64>::max(); 
+void solve() { 
+  i64 n, m; 
+  std::cin >> n >> m; 
 
-std::vector<i64> vis(5e5+1, false); 
-std::vector<i64> dist(5e5+1, inf);
-std::vector<i64> pat(5e5+1, -1); 
+  Graph g; 
 
-i64 maxDepth = 0; 
-void Graph::dfs(i64 root, i64 depth) { 
-  if (!root || vis[root] || !g[root].size()) { 
-    maxDepth = std::max(maxDepth, depth); 
-    return; 
+  auto add = [&](i64 u, i64 v) { 
+    // g[u].push_back(v); 
+    g[v].push_back(u);
+    g[u].push_back(v); 
+  };
+
+  for (i64 i = 0; i < n-1; i++) { 
+    i64 u, v; 
+    std::cin >> u >> v; 
+    add(u, v);
   }
-  vis[root] = true; 
-  for (auto &v : g[root]) { dfs(v, depth + 1); }
-}
+  
+  for (i64 i = 0; i < m; i++) { i64 v; std::cin >> v; }
+  
+  std::vector<i64> d(n + 1, -1); 
+  std::queue<i64> q;  
+  q.push(n); 
+  d[n] = 0; 
 
-void Graph::dijkstra(i64 root) { 
-  dist.assign(n, -inf);
-  pat.assign(n, -1); 
-  std::vector<bool> u(n, false); 
-  dist[root] = 0; 
-  for (i64 i = 0; i < n; i++) { 
-    int v = -1; 
-    for (int j = 0; j < n; j++) { 
-      if (!u[j] && (v == -1 || dist[j] >= dist[v])) 
-        v = j; 
+  i64 isBranch = false; 
+  std::vector<i64> branch(n + 1, 0);
+
+  while (!q.empty()) {
+    i64 from = q.front(); q.pop(); 
+
+    if (from == 1) { 
+      isBranch = true; 
+      continue; 
     }
-    if (dist[v] == inf) break; 
-    u[v] = true; 
-    for (auto &edge : g[v]) { 
-      i64 to = edge; 
-      i64 len = 1; 
 
-      if (dist[v] + len >= dist[to]) { 
-        dist[to] = dist[v] + len; 
-        pat[to] = v; 
+    for (const auto to : g[from]) { 
+      if (d[to] == -1) {
+        d[to] = d[from] + 1; 
+        q.push(to);
+        if (isBranch) branch[to] = 1; 
       }
     }
   }
-}
-
-void setup() { 
-  std::fill(vis.begin(), vis.end(), false);
-  maxDepth = -1; 
-}
-
-void solve() {  
-  i64 n, m; 
-  std::cin >> n >> m; 
-  Graph g(n); 
-  for (i64 i = 0; i < n-1; i++) {
-    i64 u, v; 
-    std::cin >> u >> v; 
-    g.add(u, v);
-  } 
-  for (i64 i = 0; i < m; i++) { 
-    i64 v; std::cin >> v; 
-    g.add(1, v);
+  
+  i64 ans = 1; 
+  for (i64 i = 2; i < n; i++) { 
+    if (d[i] != -1 && branch[i]) ans++; 
   }
-  setup(); 
   
-  g.dijkstra(1); 
-  
-  // for (i64 i = 0; i < n; i++) { 
-  //   std::cout << dist[i+1] << " ";
-  // }
-  // std::cout << "\n";
-  std::cout << dist[n-1] << "\n";
-
+  std::cout << ans << "\n";
 }
