@@ -121,7 +121,6 @@ int main() {
     solve();
   }
 }
-
 void solve() {
   i64 n; 
   std::cin >> n; 
@@ -139,8 +138,7 @@ void solve() {
     if (i == 0 || i == n-1) cost += (d(a[i], b[i])); 
     if (i > 0) cost += (d(a[i], a[i-1]) + d(b[i], b[i-1]));
   }
-  if (n >= 2) cost -= d(b[1], b[0]); 
-  
+  if (n >= 2) cost -= d(b[1], b[0]);  
   i64 maxCost = cost; 
   for (i64 i = 1; i < n-1; i++) { 
     cost = cost + d(a[i], b[i]); 
@@ -157,8 +155,6 @@ void solve() {
   maxCost = std::max(cost, maxCost); 
   std::cout << maxCost << "\n";
 } 
-
-
 /*
 4
 1 2 3 4

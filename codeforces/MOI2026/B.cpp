@@ -127,7 +127,7 @@ void solve() {
     for (i64 j = 0; j <= 1; j++) {
       i64 pref_min = sum(i-1, 0); 
       i64 pref_max = sum(i-1, 1);
-      std::vector<i64> choices {v[i-1] + pref_min, v[i-1] + pref_max, v[i-1] - pref_min, v[i-1] - pref_max};
+      std::vector<i64> choices {v[i-1], v[i-1] + pref_min, v[i-1] + pref_max, v[i-1] - pref_min, v[i-1] - pref_max};
       if (j == 0) { pf[i][j] = *std::min_element(choices.begin(), choices.end()); } 
       else { pf[i][j] = *std::max_element(choices.begin(), choices.end()); }
     }

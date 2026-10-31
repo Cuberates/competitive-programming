@@ -1,4 +1,4 @@
-  #include <random>
+#include <random>
 #include <cassert>
 #include <cctype>
 #include <cerrno>
@@ -104,57 +104,47 @@ void debug(i64 &&v) {
   std::cout << v << " "; 
 }
 
-using Graph = std::map<i64, std::vector<i64>>; 
-
 void solve() { 
   i64 n, m; 
   std::cin >> n >> m; 
-
-  Graph g; 
-
-  auto add = [&](i64 u, i64 v) { 
-    // g[u].push_back(v); 
-    g[v].push_back(u);
-    g[u].push_back(v); 
-  };
-
+  std::map<i64, std::vector<i64>> g; 
   for (i64 i = 0; i < n-1; i++) { 
     i64 u, v; 
     std::cin >> u >> v; 
-    add(u, v);
+    g[u].push_back(v); 
+    g[v].push_back(u); 
   }
-  
-  for (i64 i = 0; i < m; i++) { i64 v; std::cin >> v; }
-  
-  std::vector<i64> d(n + 1, -1); 
-  std::queue<i64> q;  
+  std::vector<i64> vis(n + 1, 0); 
+  std::vector<i64> dist(n + 1, -1);
+  std::vector<i64> ext(n + 1, 0); 
+  i64 branch = false; 
+  std::queue<i64> q;
   q.push(n); 
-  d[n] = 0; 
-
-  i64 isBranch = false; 
-  std::vector<i64> branch(n + 1, 0);
-
-  while (!q.empty()) {
-    i64 from = q.front(); q.pop(); 
-
-    if (from == 1) { 
-      isBranch = true; 
-      continue; 
-    }
-
-    for (const auto to : g[from]) { 
-      if (d[to] == -1) {
-        d[to] = d[from] + 1; 
-        q.push(to);
-        if (isBranch) branch[to] = 1; 
+  dist[n] = 0; 
+  while (q.size()) { 
+    i64 u = q.front(); 
+    q.pop(); 
+    // std::cout << u << "\n";
+    if (vis[u]) continue;  
+    vis[u] = 1; 
+    if (branch) ext[u] = 1; 
+    for (i64 v : g[u]) { 
+      if (v == 1) { branch = true; }
+      if (dist[v] == -1) { 
+        dist[v] = dist[u] + 1; 
+        if (u != 1) q.push(v); 
       }
     }
   }
-  
-  i64 ans = 1; 
-  for (i64 i = 2; i < n; i++) { 
-    if (d[i] != -1 && branch[i]) ans++; 
+  i64 ans = dist[1]; 
+  for (i64 i = 0; i < m; i++) { 
+    i64 v; 
+    std::cin >> v; 
+    if (v != 1 && v != n && dist[v] != -1 && ext[v]) { 
+      ans = std::max(dist[v] + 1, ans);  
+      ext[v] = 0; 
+    }
   }
-  
   std::cout << ans << "\n";
-}
+  // std::cout << "dist: "; debug(dist);  
+};
