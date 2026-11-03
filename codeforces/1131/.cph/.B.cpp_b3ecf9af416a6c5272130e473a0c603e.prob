@@ -1,0 +1,1 @@
+{"name":"Local: B","url":"/Users/cookie/Desktop/COMPROG/codeforces/1131/B.cpp","tests":[{"id":1793481004551,"input":"2\n0 0 3\n1 1 2\n","output":"RPS\nSPSS\n"},{"id":1793481090374,"input":"1\n1 0 0","output":"R"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/Users/cookie/Desktop/COMPROG/codeforces/1131/B.cpp","group":"local","local":true}
